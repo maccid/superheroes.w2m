@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+header.floating {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    .mat-toolbar {
+        background-color: #434c50;
+        .home-icon {
+            padding: 4px;
+            > img {
+                width: 80px;
+            }
+        }
+        .spacer {
+            flex: 1 1 auto;
+        }
+        button {
+            margin: 8px 8px 8px 0;
+        }
+    }
+}
+
+
+
