@@ -11,7 +11,6 @@ export class HeroesService {
 
   constructor(private http: HttpClient) { 
     this.url = environment.apiUrl;
-    console.log(`${this.url}/heroes`)
   }
 
   getHeroes(params?: HttpParams): Observable<Hero[]> {
