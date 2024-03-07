@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  ngOnInit(): void {
-      console.log(1);
-  }
-  
- }
+}
