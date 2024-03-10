@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
-import { SnackbarService } from '../services/snackbar.service';
+import { SnackbarService } from '../services/snackBar.service';
 
 export const ErrorInterceptor: HttpInterceptorFn = (req, next) => {
 
