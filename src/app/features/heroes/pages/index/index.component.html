@@ -12,6 +12,14 @@
             <mat-cell *matCellDef="let element" data-label="Fecha Emisión" [style.flex]="'2'">{{ element.publisher }}</mat-cell>
         </ng-container>
         
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+            <mat-cell *matCellDef="let element"  [style.flex]="'2'">
+                <a mat-raised-button color="primary" [routerLink]="['/heroes', element.id]">Editar</a>
+                <button mat-raised-button color="warn" (click)="openDeleteDialog(element.id)">Eliminar</button>
+            </mat-cell>
+          </ng-container>
+        
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
