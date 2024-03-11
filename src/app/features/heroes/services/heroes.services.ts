@@ -13,7 +13,7 @@ export class HeroesService {
     this.url = environment.apiUrl;
   }
 
-  getHeroes(params?: HttpParams): Observable<Hero[]> {
+  list(params?: HttpParams): Observable<Hero[]> {
     
     const options = { params };
 
@@ -25,25 +25,25 @@ export class HeroesService {
   
   }
 
-  getHero(id: string): Observable<Hero>{
+  get(id: string): Observable<Hero>{
 
     return this.http.get<Hero>(`${this.url}/heroes/${id}`);
   }
 
 
-  createHero(heroe:Hero):Observable<Hero>{
+  create(heroe:Hero):Observable<Hero>{
 
     return this.http.post<Hero>(`${this.url}/heroes`,heroe);
 
   }
 
-  updateHero(heroe:Hero):Observable<Hero>{
+  update(heroe:Hero):Observable<Hero>{
 
     return this.http.put<Hero>(`${this.url}/heroes/${heroe.id}`,heroe);
 
   }
 
-  deleteHero(id:string):Observable<Hero>{
+  delete(id:string):Observable<Hero>{
 
     return this.http.delete<Hero>(`${this.url}/heroes/${id}`);
 

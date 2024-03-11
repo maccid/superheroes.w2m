@@ -8,11 +8,14 @@ export const routes: Routes = [{
             path: '',
             component: IndexComponent
         },
-       /* 
+        { 
+            path: 'add', 
+            loadComponent: () => import('./pages/edit/edit.component').then(m => m.EditComponent)
+        },
         {
             path: 'edit/:id',
-            component: EditComponent
-        }*/
+            loadComponent: () => import('./pages/edit/edit.component').then(m => m.EditComponent)
+        }
     ]
 }];
 
