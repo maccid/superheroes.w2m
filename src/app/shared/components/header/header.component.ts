@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 
 import { RouterLink } from '@angular/router';
 
-//import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -13,8 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     MatToolbarModule,
     MatButtonModule,
-    RouterLink,
-    //FlexLayoutModule
+    RouterLink
   ],
   templateUrl: './header.component.html',
 

@@ -8,15 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'delete-dialog',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
-  template: `
-    <div mat-dialog-content>
-      <p>¿Deseas eliminar el elemento {{id}}?</p>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="false">Cancelar</button>
-      <button mat-button color="warn" [mat-dialog-close]="true">Eliminar</button>
-    </div>
-  `,
+  templateUrl: './deleteDialog.component.html',
+  styleUrls: ['deleteDialog.component.scss']
 })
 export class DeleteDialogComponent {
 

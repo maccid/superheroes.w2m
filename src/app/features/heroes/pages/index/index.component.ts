@@ -2,7 +2,7 @@ import { Component, WritableSignal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { MatTableModule } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material/table';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -32,7 +32,7 @@ export class IndexComponent {
 
   openDeleteDialog(id: any): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '250px',
+      width: '400px',
       data: id
     });
 
