@@ -7,7 +7,7 @@
 
         <ng-container matColumnDef="superhero">
             <mat-header-cell *matHeaderCellDef [style.flex]="'1'">Heroe</mat-header-cell>
-            <mat-cell *matCellDef="let element" data-label="Nº Episodio" [style.flex]="'1'">{{ element.superhero }}</mat-cell>
+            <mat-cell *matCellDef="let element" data-label="Nº Episodio" [style.flex]="'1'">{{ element.superhero | titlecase }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="publisher">

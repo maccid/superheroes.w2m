@@ -10,10 +10,11 @@ import { Hero } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.services';
 
 import { DeleteDialogComponent } from '../../components/deleteDialog.component'
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, RouterLink],
+  imports: [MatTableModule, MatButtonModule, RouterLink, TitleCasePipe],
   templateUrl: './index.component.html',
   styleUrls: ['index.component.scss']
 })
