@@ -10,9 +10,16 @@ export class SnackbarService {
   constructor(private snackBar: MatSnackBar) {}
 
   public openError(message: string): void {
-    this.snackBar.open(message, 'Dismiss', {
+    this.snackBar.open(message, 'Cerrar', {
       duration: 5000,
       panelClass: ['error-snackbar'],
+    });
+  }
+
+  public openSuccess(message: string): void {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 5000,
+      panelClass: ['success-snackbar'],
     });
   }
 }

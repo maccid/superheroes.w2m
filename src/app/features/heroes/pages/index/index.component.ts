@@ -11,6 +11,7 @@ import { HeroesService } from '../../services/heroes.services';
 
 import { DeleteDialogComponent } from '../../components/deleteDialog.component'
 import { TitleCasePipe } from '@angular/common';
+import { SnackbarService } from 'src/app/core/services/snackBar.service';
 
 @Component({
   standalone: true,
@@ -23,16 +24,19 @@ export class IndexComponent {
   dataSource: WritableSignal<Hero[]> = signal([]);
   displayedColumns: string[] = ['superhero', 'publisher', 'actions'];
 
-  constructor(private heroesService: HeroesService, private dialog: MatDialog) { }
+  constructor(
+    private _heroesService: HeroesService, 
+    private _dialog: MatDialog,
+    private _snackbarService: SnackbarService) { }
 
   ngOnInit(): void {
-    this.heroesService.list().subscribe(heroes => {
+    this._heroesService.list().subscribe(heroes => {
       this.dataSource.set(heroes);
     }); 
   }
 
   openDeleteDialog(id: any): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+    const dialogRef = this._dialog.open(DeleteDialogComponent, {
       width: '400px',
       data: id
     });
@@ -40,8 +44,8 @@ export class IndexComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result) {
-        this.heroesService.delete(id).subscribe(heroes => {
-          console.log('Meter función para borrar el elemento: '+id);
+        this._heroesService.delete(id).subscribe(heroes => {
+          this._snackbarService.openSuccess('El heroe '+id+' ha borrado correctamente');
           this.ngOnInit();
         });         
       }
