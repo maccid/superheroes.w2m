@@ -20,16 +20,13 @@ import { DeleteDialogComponent } from '../../components/deleteDialog.component'
 export class IndexComponent {
 
   dataSource: WritableSignal<Hero[]> = signal([]);
-  heroes$: MatTableDataSource<Hero> = new MatTableDataSource<Hero>(); 
   displayedColumns: string[] = ['superhero', 'publisher', 'actions'];
 
   constructor(private heroesService: HeroesService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.heroesService.getHeroes().subscribe(heroes => {
-
+    this.heroesService.list().subscribe(heroes => {
       this.dataSource.set(heroes);
-      this.heroes$ = new MatTableDataSource(heroes); 
     }); 
   }
 
@@ -42,7 +39,10 @@ export class IndexComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result) {
-        console.log('Meter función para borrar el elemento: '+id);
+        this.heroesService.delete(id).subscribe(heroes => {
+          console.log('Meter función para borrar el elemento: '+id);
+          this.ngOnInit();
+        });         
       }
     });
   }
