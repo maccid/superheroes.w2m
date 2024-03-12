@@ -1,13 +1,14 @@
 <div ngClass.gt-sm="mat-elevation-z8" >
     
+    <filter-search (filterText)="applyFilter($event)"></filter-search>
     <button class="add" routerLink="/heroes/add" mat-fab color="primary">+</button>
     <br>
 
     <mat-table [dataSource]="dataSource()" ngClass="table" ngClass.lt-md="card">
 
         <ng-container matColumnDef="superhero">
-            <mat-header-cell *matHeaderCellDef [style.flex]="'1'">Heroe</mat-header-cell>
-            <mat-cell *matCellDef="let element" data-label="Nº Episodio" [style.flex]="'1'">{{ element.superhero | titlecase }}</mat-cell>
+            <mat-header-cell *matHeaderCellDef [style.flex]="'2'">Heroe</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Nº Episodio" [style.flex]="'2'">{{ element.superhero | titlecase }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="publisher">
@@ -16,17 +17,19 @@
         </ng-container>
         
         <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-            <mat-cell *matCellDef="let element"  [style.flex]="'2'">
-                <a mat-raised-button color="primary" [routerLink]="['/heroes/edit', element.id]">Editar</a>
-                <button mat-raised-button color="warn" (click)="openDeleteDialog(element.id)">Eliminar</button>
+            <mat-header-cell *matHeaderCellDef [style.flex]="'1'"></mat-header-cell>
+            <mat-cell *matCellDef="let element"  [style.flex]="'1'">
+                <a mat-icon-button [routerLink]="['/heroes/edit', element.id]">
+                    <mat-icon>edit</mat-icon>
+                </a>
+                <button mat-icon-button (click)="openDeleteDialog(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </mat-cell>
           </ng-container>
         
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
-    <!--
-    <mat-paginator [length]="info?.count" [hidePageSize]="true" [pageSizeOptions]="[20]" showFirstLastButtons (page)="onPageChange($event)"></mat-paginator>
-    -->
 </div>
+

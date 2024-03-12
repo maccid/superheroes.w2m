@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+
 import { environment } from '@env/environment';
 import { Hero } from '../interfaces/heroes.interface';
 
@@ -13,15 +15,9 @@ export class HeroesService {
     this.url = environment.apiUrl;
   }
 
-  list(params?: HttpParams): Observable<Hero[]> {
+  list(params: string = ''): Observable<Hero[]> {
     
-    const options = { params };
-
-    //Params
-    //return this.http.get<Heroe[]>(`${URL}/heroes?superhero_like=${texto}`);
-    //return this.http.get<Heroe[]>(`${URL}/heroes?_page=${this.page}&_limit=${this.limit}`);
-
-    return this.http.get<Hero[]>(`${this.url}/heroes`, options);
+    return this.http.get<Hero[]>(`${this.url}/heroes${params}`);
   
   }
 

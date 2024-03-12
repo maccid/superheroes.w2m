@@ -1,0 +1,10 @@
+<mat-form-field >
+    <mat-label>Buscar héroe</mat-label>
+    <input matInput type="text" [(ngModel)]="filterValue"  (input)="onSearchTextChange($event)">
+    <mat-icon matPrefix class="my-icon">search</mat-icon>
+    @if(filterValue) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="clearText()">
+            <mat-icon>close</mat-icon>
+        </button>
+    }
+</mat-form-field>

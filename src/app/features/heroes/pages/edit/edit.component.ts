@@ -41,6 +41,7 @@ export class EditComponent {
     this.id = this.actroute.snapshot.paramMap.get('id') as string;
 
   
+    console.log( this.actroute.snapshot.url)
 
     
     if (this.id != null && this.id != '') {
