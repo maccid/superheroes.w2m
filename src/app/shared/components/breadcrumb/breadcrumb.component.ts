@@ -40,11 +40,16 @@ export class BreadcrumbComponent implements OnInit {
       if (routeURL !== '') 
         url += `/${routeURL}`;
       
-      const label = child.snapshot.data['breadcrumb'] ?? '';
+      let label = child.snapshot.data['breadcrumb'] ?? '';
 
+      const id = child.snapshot.paramMap.get('id');
+
+      if (id) 
+        label += `: ${id}`; 
+    
       if (label !== '') 
         breadcrumbs.push({ label, url });
-      
+
       return this.buildBreadcrumbs(child, url, breadcrumbs);
     }
   }

@@ -1,8 +1,13 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item" *ngFor="let crumb of breadcrumbs; let last = last" [ngClass]="{active: last}">
-      <a mat-button *ngIf="!last" [routerLink]="crumb.url">{{ crumb.label }}</a>
-      <a mat-button [disabled]="true" *ngIf="last">{{ crumb.label }}</a>
-    </li>
+    @for(crumb of breadcrumbs; track crumb.label; let last = $last){
+      <li class="breadcrumb-item" [ngClass]="{active: last}">
+        @if(!last) {
+          <a mat-button [routerLink]="crumb.url">{{ crumb.label }}</a>
+        } @else {
+          <a mat-button [disabled]="true">{{ crumb.label }}</a>
+        }
+      </li>
+    }
   </ol>
 </nav>

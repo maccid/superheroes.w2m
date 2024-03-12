@@ -9,3 +9,11 @@ button.add {
 .mat-column-actions {
     justify-content: right;
 }
+
+mat-card {
+    margin: 15px;
+}
+
+.no-padding {
+    padding: 0 !important;
+}

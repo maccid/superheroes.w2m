@@ -1,4 +1,4 @@
-ol {
+ol.breadcrumb {
     list-style: none;
     display: flex;
     gap: 6px;
@@ -14,9 +14,6 @@ ol {
         a {
             color: white;
             text-decoration: none;
-            /*&:hover {
-                background-color: rgb(168, 167, 167,) !important;
-            }*/
             &[disabled] {
                 color: rgb(117, 116, 116);
             }

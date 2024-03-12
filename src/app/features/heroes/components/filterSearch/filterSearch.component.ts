@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class filterSearchComponent {
 
-  private _filterKey = 'filtroHeroes';
+  private _filterKey = 'heroes.search';
 
   filterValue: string = '';
   
