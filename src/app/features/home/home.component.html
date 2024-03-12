@@ -1,5 +1,102 @@
-<h1 class="title">Welcome Home Page!</h1>
-<!-- TODO: Contabilizar heroes -->
-<!-- TODO: Signals -->
-<!-- TODO: Control Flow -->
-<!-- TODO: Typeds Form -->
+
+<section>
+    <div class="container">
+        <img src="./assets/images/superheroes.png" alt="SuperHeroes" class="centered">
+    </div>
+    <div class="container text-center subtittle">
+        <p class="h1 superheroes-font">Creado por <br>Miguel Angel Cid Garcia</p>
+    </div>
+    <div class="container text-center doc-title">
+        <p class="h1 superheroes-font">DocumentaciOn</p>
+    </div>
+    <div class="container text-center ">
+        A continuación se muestra la documentación del proyecto realizado para la prueba técnica de World2Meet.<br>
+    </div>
+</section>
+<section>
+    <div class="container-doc">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Funcionalidad
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>La app se centra en el consumo de la API de SuperHeroes creada mediante Json Server.</p>
+                <ul>
+                    <li><b>Página inicial: </b>
+                        <br>Se ha usado para documentar la app.
+                    </li><br>
+                    <li><b>Página Heroes: </b>
+                        <br>Se muestra los superheroes en modo tabla responsive. Se puede realizar diferentes acciones sobre el listado. Además se ha añadido un
+                        filtro para superheroes que está configurado para, aunque se cambie de página o se refresque, se mantenga la información.
+                    </li><br>
+                </ul>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Variables de entorno y Rutas relativas
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>Las <b>variables de entorno</b> se definiden en /env para separar la configuración especifica de los
+                    distintos entornos,
+                    en este caso solo está el desarrollo.</p>
+                <p>Las <b>rutas relativas</b> definidas en tsconfig son para dar mas consistencia al proyecto y entender
+                    de manera más facilmente
+                    la ubicación de las carpetas sin tener que navegar entre ellas. También por si se tiene que
+                    reorganizar el proyecto, no habrá que cambiar
+                    la ruta de todos los ficheros a los que afecta sino solo en el fichero tsconfig</p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Estructura
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>El proyecto se ha ideado para una futura escabilidad, es decir, esta modularizado para que en el futuro se pueda crear nuevas páginas, componentes, servicios, etc. Para ello se ha estructurado de la siguiente manera:<br><br>
+                </p>
+                <ul>
+                    <li><b>Core:</b> Funciones comunes del proyectos, tales como interceptores, servicios, pipe, etc.</li>
+                    <li><b>Shared:</b> Se muestra el listado de componentes comunes a la aplicación. Algunos estos componentes forman parte de la estructura o esqueleto, tales como header y loader.
+                            Estos componentes tienen la funcionalidad de modificar la estructura de la app, haciendo que la
+                            la vista cambie según la necesidad.
+                            Otros son componentes que se reutilizan en las diferentes páginas que conforman la app, tales como
+                            filter y toolbar. Estos mayormente el estado de la información de la página actual y actualiza sus
+                            componente para adaptarlo a ella.
+                    </li>
+                    <li><b>Features:</b> Esta ideado para modular la aplicación, es decir, por cada nuevo módulo se crea una carpeta que contendrá toda la funcionalidad, aquí se situan servicio propios del módulo, interfaces, componentes, modelos y las diferentes páginas usadas, como en este caso listado de heroes y añadir/editar heroes. Si se desea crear un nuevo módulo, tan solo habrá que seguir la estructura y adaptarla la nueva funcionalidad, por ejemplo si queremos gestionar las editoriales.</li>
+                </ul>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Servicios
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>Se ha generado distintos servicios para que los distintos componentes puedan hacer diferentes
+                    acciones sobre el servicio. Los más imporantes son:</p>
+                <ul>
+                    <li><b>Api:</b> Conectará los componente con la API, en este caso consiste en un sencillo get que
+                        atacará a los endpoints definidos en la API."</li><br>
+                </ul>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Mejoras
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>Se podría usar el patrón Redux para la administración de estado de los datos y la información que se
+                    utilizan en la aplicación. Con ellos hubieramos conseguido centralizar los estados y conseguir que sean
+                    atómicos. De esta manera todo componente que este vigilando cierta información del store sea capaz
+                    de ver cuando cambia y actuar al respecto.
+                </p>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+
+    </div>
+</section>
