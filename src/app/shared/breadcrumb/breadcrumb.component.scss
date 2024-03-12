@@ -1,0 +1,25 @@
+ol {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    color: white !important;
+    padding: 0;
+    margin: 0;
+    li {
+        +li::before{
+            float: left;
+            padding-right: 10px;
+            content: "·";
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            /*&:hover {
+                background-color: rgb(168, 167, 167,) !important;
+            }*/
+            &[disabled] {
+                color: rgb(117, 116, 116);
+            }
+        }
+    }   
+}

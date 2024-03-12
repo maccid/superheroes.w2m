@@ -3,15 +3,17 @@ import { RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from './shared/components/header/header.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, LoaderComponent],
+  imports: [RouterOutlet, HeaderComponent, ToolbarComponent, LoaderComponent],
   template: `
     <app-loader></app-loader>
     <app-header></app-header>
     <main class="content">
+      <app-toolbar></app-toolbar>
       <router-outlet></router-outlet>
     </main> 
     `,
