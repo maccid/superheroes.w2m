@@ -23,8 +23,6 @@ export class BreadcrumbComponent implements OnInit {
       filter(event => event instanceof NavigationEnd),
       map(() => this.buildBreadcrumbs(this.activatedRoute.root))
     ).subscribe(breadcrumbs => {
-      console.log(this.activatedRoute.root);
-      console.log(breadcrumbs);
       this.breadcrumbs = breadcrumbs;
     });
   }

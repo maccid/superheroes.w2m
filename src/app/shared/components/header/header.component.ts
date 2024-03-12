@@ -14,7 +14,6 @@ import { MatButtonModule } from '@angular/material/button';
     RouterLink
   ],
   templateUrl: './header.component.html',
-
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent { }
