@@ -11,6 +11,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
 import { Hero } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.services';
 
@@ -30,7 +32,7 @@ export class IndexComponent {
 
   @Input() searchFilter: string = '';
   dataSource: WritableSignal<Hero[]> = signal([]);
-  displayedColumns: string[] = ['superhero', 'publisher', 'actions'];
+  displayedColumns: string[] = ['superhero', 'alter_ego', 'publisher', 'actions'];
 
   private _filterKey = 'heroes.search';
   private _unsubscribe$ = new Subject<void>();
@@ -38,10 +40,22 @@ export class IndexComponent {
   constructor(
     private _heroesService: HeroesService, 
     private _dialog: MatDialog,
-    private _snackbarService: SnackbarService) { }
+    private _snackbarService: SnackbarService,
+    private _breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     const filterText = localStorage.getItem(this._filterKey) || '';
+
+    this._breakpointObserver.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.HandsetLandscape,
+    ]).subscribe(result => {
+      if (result.matches && window.innerWidth < 600) {
+        this.displayedColumns = ['superhero', 'alter_ego', 'actions'];
+      } else {
+        this.displayedColumns = ['superhero', 'alter_ego', 'publisher', 'actions'];
+      }
+    });
 
     this.applyFilter(filterText); 
   }
@@ -75,7 +89,7 @@ export class IndexComponent {
 
       if (result) {
         this._heroesService.delete(id).subscribe(heroes => {
-          this._snackbarService.openSuccess('El heroe '+id+' ha borrado correctamente');
+          this._snackbarService.openSuccess('El heroe '+id+' ha sido borrado correctamente');
           this.ngOnInit();
         });         
       }

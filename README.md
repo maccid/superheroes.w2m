@@ -8,7 +8,7 @@ Para que el proyecto funcione con normalidad es necesario levantar el docker que
 
 ## Latencia de la red
 
-Para ver correctamente las funcionalidades exigidas sería bueno ralentizar la red y hacer que la red funcione con un 3G lento para asi poder apreciar mejor funcionalides tales como el loader.
+Para ver correctamente las funcionalidades exigidas sería bueno ralentizar la red y hacer que la red funcione con un 3G lento para asi poder apreciar mejor funcionalides tales como el loader o la cancelación de peticiones cuando se lanza los eventos del filtro.
 
 ## Documentación
 

@@ -7,9 +7,9 @@ header.floating {
     .mat-toolbar {
         background-color: #434c50;
         .home-icon {
-            padding: 4px;
+            padding: 13px;
             > img {
-                width: 80px;
+                width: 64px;
             }
         }
         .spacer {
@@ -21,3 +21,6 @@ header.floating {
     }
 }
 
+button.active {
+    background: #BFCB3B !important;
+}

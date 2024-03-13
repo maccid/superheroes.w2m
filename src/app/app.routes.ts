@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
  
 export const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent),
     data: { breadcrumb: 'Inicio' } 
   },
@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'home',
   }
 ];
 

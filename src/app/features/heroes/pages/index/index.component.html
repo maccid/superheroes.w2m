@@ -6,15 +6,21 @@
 </mat-card>
 <mat-card>
     <mat-card-content class="no-padding">
-        <mat-table [dataSource]="dataSource()" ngClass="table" ngClass.lt-md="card">
+
+        <mat-table [dataSource]="dataSource()">
 
             <ng-container matColumnDef="superhero">
-                <mat-header-cell *matHeaderCellDef [style.flex]="'2'">Heroe</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef [style.flex]="'2'"><b>Heroe</b></mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Nº Episodio" [style.flex]="'2'">{{ element.superhero | titlecase }}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="alter_ego">
+                <mat-header-cell *matHeaderCellDef [style.flex]="'2'"><b>Personaje</b></mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Género" [style.flex]="'2'">{{ element.alter_ego }}</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="publisher">
-                <mat-header-cell *matHeaderCellDef [style.flex]="'2'">Editorial</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef [style.flex]="'2'"><b>Editorial</b></mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Fecha Emisión" [style.flex]="'2'">{{ element.publisher }}</mat-cell>
             </ng-container>
             
@@ -32,6 +38,10 @@
             
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            <div class="table-emtpy" *matNoDataRow>
+                No hay datos que coincidan con el filtro
+            </div>
         </mat-table>
     </mat-card-content>
 </mat-card>
