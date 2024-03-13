@@ -1,0 +1,18 @@
+<div>
+  <button
+    mat-icon-button
+    matTooltip="Vista Grid"
+    (click)="onViewChange('grid')"
+    [disabled]="viewMode !== 'table'"
+  >
+    <mat-icon>dashboard</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    matTooltip="Vista Tabla"
+    (click)="onViewChange('table')"
+    [disabled]="viewMode !== 'grid'"
+  >
+    <mat-icon>view_list</mat-icon>
+  </button>
+</div>

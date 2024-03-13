@@ -1,77 +1,94 @@
-<app-add-button
-  [routerLink]="route"
-  [tooltipText]="tooltipAdd"
-></app-add-button>
-<app-filter [filterKey]="filterKey" (filterText)="applyFilter($event)"></app-filter>
+<app-add-button [routerLink]="route" [tooltipText]="tooltipAdd" />
 
-<mat-card>
-  <mat-card-content class="no-padding">
-    <mat-table [dataSource]="dataSource()">
-      <ng-container matColumnDef="superhero">
-        <mat-header-cell *matHeaderCellDef [style.flex]="'2'"
-          ><b>Heroe</b></mat-header-cell
-        >
-        <mat-cell
-          *matCellDef="let element"
-          data-label="Nº Episodio"
-          [style.flex]="'2'"
-          >{{ element.superhero | titlecase }}</mat-cell
-        >
-      </ng-container>
+<div class="options">
+  <app-filter
+    [filterKey]="filterKey"
+    (filterText)="applyFilter($event)"
+  ></app-filter>
+  <app-view-mode
+    [viewKey]="viewKey"
+    (viewValue)="applyView($event)"
+  ></app-view-mode>
+</div>
+@switch (viewMode) {
+  @case ("table") {
+    <mat-card>
+      <mat-card-content class="no-padding">
+        <mat-table [dataSource]="dataSource()">
+          <ng-container matColumnDef="superhero">
+            <mat-header-cell *matHeaderCellDef [style.flex]="'2'"
+              ><b>Heroe</b></mat-header-cell
+            >
+            <mat-cell
+              *matCellDef="let element"
+              data-label="Nº Episodio"
+              [style.flex]="'2'"
+              >{{ element.superhero | titlecase }}</mat-cell
+            >
+          </ng-container>
 
-      <ng-container matColumnDef="alter_ego">
-        <mat-header-cell *matHeaderCellDef [style.flex]="'2'"
-          ><b>Personaje</b></mat-header-cell
-        >
-        <mat-cell
-          *matCellDef="let element"
-          data-label="Género"
-          [style.flex]="'2'"
-          >{{ element.alter_ego }}</mat-cell
-        >
-      </ng-container>
+          <ng-container matColumnDef="alter_ego">
+            <mat-header-cell *matHeaderCellDef [style.flex]="'2'"
+              ><b>Personaje</b></mat-header-cell
+            >
+            <mat-cell
+              *matCellDef="let element"
+              data-label="Género"
+              [style.flex]="'2'"
+              >{{ element.alter_ego }}</mat-cell
+            >
+          </ng-container>
 
-      <ng-container matColumnDef="publisher">
-        <mat-header-cell *matHeaderCellDef [style.flex]="'2'"
-          ><b>Editorial</b></mat-header-cell
-        >
-        <mat-cell
-          *matCellDef="let element"
-          data-label="Fecha Emisión"
-          [style.flex]="'2'"
-          >{{ element.publisher }}</mat-cell
-        >
-      </ng-container>
+          <ng-container matColumnDef="publisher">
+            <mat-header-cell *matHeaderCellDef [style.flex]="'2'"
+              ><b>Editorial</b></mat-header-cell
+            >
+            <mat-cell
+              *matCellDef="let element"
+              data-label="Fecha Emisión"
+              [style.flex]="'2'"
+              >{{ element.publisher }}</mat-cell
+            >
+          </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef [style.flex]="'1'"></mat-header-cell>
-        <mat-cell *matCellDef="let element" [style.flex]="'1'">
-          <a
-            mat-icon-button
-            [routerLink]="['/heroes/edit', element.id]"
-            matTooltip="Editar"
-          >
-            <mat-icon>edit</mat-icon>
-          </a>
-          <button
-            mat-icon-button
-            (click)="openDeleteDialog(element.id)"
-            matTooltip="Eliminar"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell
+              *matHeaderCellDef
+              [style.flex]="'1'"
+            ></mat-header-cell>
+            <mat-cell *matCellDef="let element" [style.flex]="'1'">
+              <a
+                mat-icon-button
+                [routerLink]="['/heroes/edit', element.id]"
+                matTooltip="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+              <button
+                mat-icon-button
+                (click)="openDeleteDialog(element.id)"
+                matTooltip="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-      <div class="table-emtpy" *matNoDataRow>
-        No hay datos que coincidan con el filtro
-      </div>
-    </mat-table>
-  </mat-card-content>
-</mat-card>
+          <div class="table-emtpy" *matNoDataRow>
+            No hay datos que coincidan con el filtro
+          </div>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  @case ("grid") {
+    asdsad
+  }
+}
 
 <br />
 <br />

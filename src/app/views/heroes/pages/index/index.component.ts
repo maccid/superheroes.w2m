@@ -30,6 +30,7 @@ import { HeroesService } from '../../heroes.services';
 
 import { DeleteDialogComponent } from 'src/app/shared/components/delete-dialog/delete-dialog.component';
 import { FilterSearchComponent } from 'src/app/shared/components/filter-search/filter-search.component';
+import { ViewModeComponent } from 'src/app/shared/components/view-mode/view-mode.component';
 
 @Component({
   standalone: true,
@@ -44,6 +45,7 @@ import { FilterSearchComponent } from 'src/app/shared/components/filter-search/f
     TitleCasePipe,
     FilterSearchComponent,
     AddButtonComponent,
+    ViewModeComponent,
   ],
   templateUrl: './index.component.html',
   styleUrls: ['index.component.scss'],
@@ -54,7 +56,8 @@ export class IndexComponent implements OnInit {
   route: string = '/heroes/add';
   tooltipAdd: string = 'Añadir Heroe';
   filterKey: string = 'heroes.search';
-  viewKey: string = 'heroes.view'
+  viewKey: string = 'heroes.view';
+  viewMode: string = '';
 
   dataSource: WritableSignal<Hero[]> = signal([]);
   displayedColumns: string[] = [
@@ -74,6 +77,7 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     const filterText = localStorage.getItem(this.filterKey) || '';
+    const viewValue = localStorage.getItem(this.viewKey) || '';
 
     this._breakpointObserver
       .observe([Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape])
@@ -91,22 +95,26 @@ export class IndexComponent implements OnInit {
       });
 
     this.applyFilter(filterText);
+    this.applyView(viewValue);
   }
 
   applyFilter(filterText: string = '') {
-    localStorage.setItem(this.filterKey, filterText);
-
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
     this._unsubscribe$ = new Subject<void>();
 
     const params = filterText ? `?superhero_like=${filterText}` : ``;
-    +this._heroesService
+
+    this._heroesService
       .list(params)
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe((heroes) => {
         this.dataSource.set(heroes);
       });
+  }
+
+  applyView(viewValue: string = '') {
+    this.viewMode = viewValue;
   }
 
   openDeleteDialog(id: string): void {

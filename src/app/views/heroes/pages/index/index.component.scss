@@ -2,8 +2,18 @@
   justify-content: right;
 }
 
+.options {
+  margin: 15px;
+  display: flex;
+  app-filter {
+    flex: 1;
+    margin-right: 15px;
+  }
+}
+
 mat-card {
   margin: 15px;
+
 }
 
 .no-padding {
