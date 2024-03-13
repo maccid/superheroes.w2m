@@ -27,15 +27,15 @@ export class HeroesService {
   }
 
 
-  create(heroe:Hero):Observable<Hero>{
+  create(hero:Hero):Observable<Hero>{
 
-    return this.http.post<Hero>(`${this.url}/heroes`,heroe);
+    return this.http.post<Hero>(`${this.url}/heroes`,hero);
 
   }
 
-  update(heroe:Hero):Observable<Hero>{
+  update(hero:Hero):Observable<Hero>{
 
-    return this.http.put<Hero>(`${this.url}/heroes/${heroe.id}`,heroe);
+    return this.http.put<Hero>(`${this.url}/heroes/${hero.id}`,hero);
 
   }
 

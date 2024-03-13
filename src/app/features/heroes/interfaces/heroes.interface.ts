@@ -3,8 +3,8 @@ export interface Hero {
     superhero:        string;
     publisher:        Publisher;
     alter_ego:        string;
-    first_appearance: string;
-    characters:       string;
+    first_appearance?: string;
+    characters?:       string;
     description?:      string;
 }
 

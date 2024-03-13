@@ -1,92 +1,102 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import  { CommonModule } from '@angular/common';
+import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 import { Router } from '@angular/router';
-import { Hero } from '../../interfaces/heroes.interface';
+import { Hero, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.services';
+import { SnackbarService } from 'src/app/core/services/snackbar.service';
 
 @Component({
   standalone: true,
-  imports: [MatButtonModule, RouterLink],
+  imports: [
+    MatButtonModule, 
+    FormsModule, 
+    ReactiveFormsModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatCardModule,
+    MatSelectModule,
+    CommonModule,
+    RouterLink
+  ],
   templateUrl: './edit.component.html',
   styleUrls: ['edit.component.scss']
 })
-export class EditComponent {
+export class EditComponent  implements OnInit {
 
-  id: string = '';
-  //form!: FormGroup;
+  heroForm: FormGroup =  new FormGroup({
+    id: new FormControl<string>('', Validators.required),
+    superhero: new FormControl<string>('', Validators.required),
+    publisher: new FormControl<string>('', Validators.required),
+    alter_ego: new FormControl<string>('', Validators.required),
+    first_appearance: new FormControl<string>(''),
+    characters: new FormControl<string>(''),
+    description: new FormControl<string>(''),
+  });
 
-  
-  //userFormGroup: ModelFormGroup<UserModel>;
-
-  form = this.builder.group({
-    id: this.builder.control('', Validators.required),
-    name: this.builder.control('', Validators.required),
-    email: this.builder.control('', Validators.required),
-    phone: this.builder.control('', Validators.required)
-  })
+  publishers: Publisher[] = Object.values(Publisher); 
+  name: string = '';
+  submitted = false;
 
   constructor(
-    private builder: FormBuilder, 
-    private router: Router,
-    private actroute: ActivatedRoute,
-    private heroesService: HeroesService) { }
+    private _actroute: ActivatedRoute,
+    private _route: Router,
+    private _heroesService: HeroesService,
+    private _snackbarService: SnackbarService) { }
 
   ngOnInit(): void {
 
-    this.id = this.actroute.snapshot.paramMap.get('id') as string;
+    const id = this._actroute.snapshot.paramMap.get('id') as string;
+          
+    if (id != null && id != '') {
 
-  
-    console.log( this.actroute.snapshot.url)
+      this._heroesService.get(id).subscribe((item: Hero) => {
+        this.heroForm.controls['id'].disable();
+        this.heroForm.setValue(item);
+        this.name = item.superhero.toUpperCase();
+      })
 
-    
-    if (this.id != null && this.id != '') {
-      //this.pagetitle = 'Edit customer';
-      this.form.controls.id.disable();
-      /*
-      this.store.dispatch(getCustomer({code:this.editcode}))
-      this.store.select(getEditdata).subscribe(item => {
-        this.myform.setValue({ code: item.code, name: item.name, email: item.email, phone: item.phone });
-      });*/
     }
-/*
-
-interface HeroForm {
-    id: FormControl<number | null>;
-    name: FormControl<string | null>;
-    email: FormControl<string | null>;
-    password: FormControl<string | null>;
-    createdAt: FormControl<Date | null>;
-  }
-    this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
-    });
-    */
-    /*this.heroesService.getHeroe().subscribe(heroes => {
-
-      this.dataSource.set(heroes);
-      this.heroes$ = new MatTableDataSource(heroes); 
-    }); */
-
     
   }
 
+  onSuperheroChange(newValue: string): void {
 
-  submit(){
+    this.name = newValue.toUpperCase();
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.heroForm.controls;
+  }
+  
+  onSubmit(): void{
     
-    console.log(this.form.value);
-    //this.form.getRawValue()
-    /*
-    this.heroesService.create(this.form.value).subscribe((res:any) => {
+    this.submitted = true;
+
+    if (this.heroForm.invalid) {
+      return;
+    }
+
+    console.log(JSON.stringify(this.heroForm.value, null, 2));
+
+    console.log(this.heroForm.value);
+
+    this._heroesService.create(this.heroForm.value)
+      .subscribe(() => {
+        this._snackbarService.openSuccess('El heroe ha sido creado correctamente');
          console.log('Post created successfully!');
-         this.router.navigateByUrl('heroes');
+         this._route.navigateByUrl('heroes');
     })
-    */
+  
   }
 
  }
