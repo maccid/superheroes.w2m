@@ -13,10 +13,3 @@ body {
 section{
     padding: 1rem 0px;
 }
-
-.myPanelClass{
-    margin-top: -21px !important; 
-    
-    background-color: var(--mdc-theme-on-surface, #5d5d5d);
-
-}
