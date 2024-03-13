@@ -25,7 +25,7 @@ import { HeroesService } from '../../services/heroes.services';
 import { DeleteDialogComponent } from '../../components/deleteDialog/deleteDialog.component';
 import { filterSearchComponent } from '../../components/filterSearch/filterSearch.component';
 
-import { SnackbarService } from 'src/app/core/services/snackbar.service';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -60,7 +60,7 @@ export class IndexComponent implements OnInit {
   constructor(
     private _heroesService: HeroesService,
     private _dialog: MatDialog,
-    private _snackbarService: SnackbarService,
+    private _notifierService: NotifierService,
     private _breakpointObserver: BreakpointObserver,
   ) {}
 
@@ -110,9 +110,10 @@ export class IndexComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this._heroesService.delete(id).subscribe(() => {
-          this._snackbarService.openSuccess(
-            'El heroe ' + id + ' ha sido borrado correctamente',
-          );
+          const message = `El heroe ${id} ha sido borrado correctamente`;
+
+          this._notifierService.openSuccess(message);
+
           this.ngOnInit();
         });
       }
