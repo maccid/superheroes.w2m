@@ -10,10 +10,14 @@
     (viewValue)="applyView($event)"
   ></app-view-mode>
 </div>
+
 @switch (viewMode) {
   @case ("table") {
     <mat-card>
       <mat-card-content class="no-padding">
+        <!--
+         <index-list [viewKey]="viewKey" [dataSource]="dataSource()" [displayedColumns]="displayedColumns"></index-list>
+        -->
         <mat-table [dataSource]="dataSource()">
           <ng-container matColumnDef="superhero">
             <mat-header-cell *matHeaderCellDef [style.flex]="'2'"
@@ -85,8 +89,34 @@
     </mat-card>
   }
 
+ 
   @case ("grid") {
-    asdsad
+     <!--
+    <mat-grid-list [cols]="getGridColumns()" [rowHeight]="getSizeHeight()">
+      <mat-grid-tile *ngFor="let item of result$ | async">
+        <mat-card ngClass="vertical" ngClass.xs="horizontal">
+          <img mat-card-xl-image src="{{ item.image }}" alt="{{ item.name }}">
+          <div>
+            <mat-card-header>
+              <mat-card-title> {{ item.name  }}</mat-card-title>
+              <mat-card-subtitle>
+                <p class="status_icon {{ item.status | lowercase }}"></p>
+                {{ item.status }} - {{ item.species }} - {{ item.gender }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Última ubicación conocida: <br>
+                <span (click)="searchAllDataByName('location', item.location.name)">{{ item.location.name }}</span>
+              </p>
+              <p>Visto por última vez en: <br>
+              <span (click)="searchAllDataByName('episode', item.episode.name)">{{ item.episode.name }}</span>
+              </p>
+            </mat-card-content>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list> 
+    -->
   }
 }
 

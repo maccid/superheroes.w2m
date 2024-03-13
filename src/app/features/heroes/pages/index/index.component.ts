@@ -59,6 +59,14 @@ export class IndexComponent implements OnInit {
   viewKey: string = 'heroes.view';
   viewMode: string = '';
 
+  fields: Object[] = [
+    { name: 'superhero', tag: 'Heroe', type: 'text', flex: '2'},
+   /* { name: 'species', tag: 'Especie', type: 'text' },
+    { name: 'status', tag: 'Estado', type: 'select', options: ['Alive', 'Dead', 'unknown'] },
+    { name: 'gender', tag: 'Género', type: 'select', options: ['Female', 'Male', 'Genderless', 'unknown'] },
+    { name: 'limit', tag: 'Limite', type: 'hidden', value: '5'}*/
+  ];
+
   dataSource: WritableSignal<Hero[]> = signal([]);
   displayedColumns: string[] = [
     'superhero',
@@ -78,6 +86,7 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     const filterText = localStorage.getItem(this.filterKey) || '';
     const viewValue = localStorage.getItem(this.viewKey) || '';
+
 
     this._breakpointObserver
       .observe([Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape])
