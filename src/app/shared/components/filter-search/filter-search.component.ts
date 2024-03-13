@@ -32,12 +32,14 @@ export class FilterSearchComponent implements OnInit {
     this.filterValue = localStorage.getItem(this.filterKey) || '';
   }
 
-  onSearchTextChange(event: any) {
-    this.filterText.emit(event.target.value);
-    localStorage.setItem(this.filterKey, event.target.value);
+  onSearchTextChange(event: Event): void {
+
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filterText.emit(filterValue);
+    localStorage.setItem(this.filterKey, filterValue);
   }
 
-  clearText() {
+  clearText(): void {
     this.filterValue = '';
     this.filterText.emit('');
     localStorage.setItem(this.filterKey, '');

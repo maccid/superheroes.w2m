@@ -40,10 +40,8 @@ export class BreadcrumbComponent implements OnInit {
     route: ActivatedRoute,
     url: string = '',
     breadcrumbs: { label: string; url: string }[] = [],
-  ): { label: string; url: string }[] | any {
+  ): { label: string; url: string }[] {
     const children: ActivatedRoute[] = route.children;
-
-    if (children.length === 0) return breadcrumbs;
 
     for (const child of children) {
       const routeURL: string = child.snapshot.url
@@ -62,5 +60,7 @@ export class BreadcrumbComponent implements OnInit {
 
       return this.buildBreadcrumbs(child, url, breadcrumbs);
     }
+
+    return breadcrumbs;
   }
 }

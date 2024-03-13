@@ -18,6 +18,6 @@ import {
 export class DeleteDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public id: any,
+    @Inject(MAT_DIALOG_DATA) public id: string,
   ) {}
 }
