@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-toolbar',

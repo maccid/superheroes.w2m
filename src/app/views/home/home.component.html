@@ -59,7 +59,7 @@
                 <p>El proyecto se ha ideado para una futura escabilidad, es decir, esta modularizado para que en el futuro se pueda crear nuevas páginas, componentes, servicios, etc. Para ello se ha estructurado de la siguiente manera:<br><br>
                 </p>
                 <ul>
-                    <li><b>Core:</b> Funciones comunes del proyectos, tales como interceptores, servicios, pipe, etc.</li><br>
+                    <li><b>Core:</b> El Core es responsable de mantener los servicios globales. Contiene funciones comunes del proyecto, tales como interceptores, servicios comunes, pipe, etc.</li><br>
                     <li><b>Shared:</b> Se muestra el listado de componentes comunes a la aplicación. Algunos estos componentes forman parte de la estructura o esqueleto, tales como header y loader.
                             Estos componentes tienen la funcionalidad de modificar la estructura de la app, haciendo que la
                             la vista cambie según la necesidad.
@@ -67,7 +67,7 @@
                             filter y toolbar. Estos mayormente el estado de la información de la página actual y actualiza sus
                             componente para adaptarlo a ella.
                     </li><br>
-                    <li><b>Features:</b> Esta ideado para modular la aplicación, es decir, por cada nuevo módulo se crea una carpeta que contendrá toda la funcionalidad, aquí se situan servicio propios del módulo, interfaces, componentes, modelos y las diferentes páginas usadas, como en este caso listado de heroes y añadir/editar heroes. Si se desea crear un nuevo módulo, tan solo habrá que seguir la estructura y adaptarla la nueva funcionalidad, por ejemplo si queremos gestionar las editoriales.</li>
+                    <li><b>Views:</b> Esta ideado para modular la aplicación, es decir, por cada nuevo módulo se crea una carpeta que contendrá toda la funcionalidad, aquí se situan servicio propios del módulo, interfaces, componentes, modelos y las diferentes páginas usadas, como en este caso listado de heroes y añadir/editar heroes. Si se desea crear un nuevo módulo, tan solo habrá que seguir la estructura y adaptarla la nueva funcionalidad, por ejemplo si queremos gestionar las editoriales.</li>
                 </ul>
             </mat-expansion-panel>
             <mat-expansion-panel>

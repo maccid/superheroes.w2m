@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { HeaderComponent } from './shared/components/header/header.component';
-import { LoaderComponent } from './shared/components/loader/loader.component';
-import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
+import { HeaderComponent } from './shared/layout/header/header.component';
+import { LoaderComponent } from './shared/layout/loader/loader.component';
+import { ToolbarComponent } from './shared/layout/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-root',
