@@ -1,8 +1,8 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    @for(crumb of breadcrumbs; track crumb.label; let last = $last){
-      <li class="breadcrumb-item" [ngClass]="{active: last}">
-        @if(!last) {
+    @for (crumb of breadcrumbs; track crumb.label; let last = $last) {
+      <li class="breadcrumb-item" [ngClass]="{ active: last }">
+        @if (!last) {
           <a mat-button [routerLink]="crumb.url">{{ crumb.label }}</a>
         } @else {
           <a mat-button [disabled]="true">{{ crumb.label }}</a>

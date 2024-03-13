@@ -8,6 +8,6 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
   standalone: true,
   imports: [MatToolbarModule, BreadcrumbComponent],
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
 })
-export class ToolbarComponent { }
+export class ToolbarComponent {}

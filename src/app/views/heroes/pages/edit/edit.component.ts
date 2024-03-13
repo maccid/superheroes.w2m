@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import  { CommonModule } from '@angular/common';
-import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
@@ -18,22 +22,21 @@ import { SnackbarService } from 'src/app/core/services/snackbar.service';
 @Component({
   standalone: true,
   imports: [
-    MatButtonModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
-    MatFormFieldModule, 
-    MatInputModule, 
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
     MatSelectModule,
     CommonModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './edit.component.html',
-  styleUrls: ['edit.component.scss']
+  styleUrls: ['edit.component.scss'],
 })
-export class EditComponent  implements OnInit {
-
-  heroForm: FormGroup =  new FormGroup({
+export class EditComponent implements OnInit {
+  heroForm: FormGroup = new FormGroup({
     id: new FormControl<string>('', Validators.required),
     superhero: new FormControl<string>('', Validators.required),
     publisher: new FormControl<string>('', Validators.required),
@@ -43,7 +46,7 @@ export class EditComponent  implements OnInit {
     description: new FormControl<string>(''),
   });
 
-  publishers: Publisher[] = Object.values(Publisher); 
+  publishers: Publisher[] = Object.values(Publisher);
   name: string = '';
   submitted = false;
 
@@ -51,35 +54,30 @@ export class EditComponent  implements OnInit {
     private _actroute: ActivatedRoute,
     private _route: Router,
     private _heroesService: HeroesService,
-    private _snackbarService: SnackbarService) { }
+    private _snackbarService: SnackbarService,
+  ) {}
 
   ngOnInit(): void {
-
     const id = this._actroute.snapshot.paramMap.get('id') as string;
-          
-    if (id != null && id != '') {
 
+    if (id != null && id != '') {
       this._heroesService.get(id).subscribe((item: Hero) => {
         this.heroForm.controls['id'].disable();
         this.heroForm.setValue(item);
         this.name = item.superhero.toUpperCase();
-      })
-
+      });
     }
-    
   }
 
   onSuperheroChange(newValue: string): void {
-
     this.name = newValue.toUpperCase();
   }
 
   get f(): { [key: string]: AbstractControl } {
     return this.heroForm.controls;
   }
-  
-  onSubmit(): void{
-    
+
+  onSubmit(): void {
     this.submitted = true;
 
     if (this.heroForm.invalid) {
@@ -90,13 +88,12 @@ export class EditComponent  implements OnInit {
 
     console.log(this.heroForm.value);
 
-    this._heroesService.create(this.heroForm.value)
-      .subscribe(() => {
-        this._snackbarService.openSuccess('El heroe ha sido creado correctamente');
-         console.log('Post created successfully!');
-         this._route.navigateByUrl('heroes');
-    })
-  
+    this._heroesService.create(this.heroForm.value).subscribe(() => {
+      this._snackbarService.openSuccess(
+        'El heroe ha sido creado correctamente',
+      );
+      console.log('Post created successfully!');
+      this._route.navigateByUrl('heroes');
+    });
   }
-
- }
+}

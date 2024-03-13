@@ -1,4 +1,3 @@
-
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
@@ -12,15 +11,20 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-filter',
   standalone: true,
   templateUrl: './filterSearch.component.html',
-  imports:[FormsModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule],
-  styleUrls: ['filterSearch.component.scss']
+  imports: [
+    FormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+  ],
+  styleUrls: ['filterSearch.component.scss'],
 })
 export class filterSearchComponent implements OnInit {
-
   private _filterKey = 'heroes.search';
 
   filterValue: string = '';
-  
+
   @Output() filterText = new EventEmitter<string>();
 
   ngOnInit(): void {
@@ -33,6 +37,6 @@ export class filterSearchComponent implements OnInit {
 
   clearText() {
     this.filterValue = '';
-    this.filterText.emit("");
+    this.filterText.emit('');
   }
 }

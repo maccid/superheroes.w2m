@@ -1,26 +1,28 @@
 import { Routes } from '@angular/router';
-    
-export const routes: Routes = [{
+
+export const routes: Routes = [
+  {
     path: '',
     data: { breadcrumb: '' },
     children: [
-        {
-            path: '',
-            loadComponent: () => import('./pages/index/index.component').then(m => m.IndexComponent),
-            data: { breadcrumb: '' }
-        },
-        { 
-            path: 'add', 
-            loadComponent: () => import('./pages/edit/edit.component').then(m => m.EditComponent),
-            data: { breadcrumb: 'Añadir Heroe' }
-        },
-        {
-            path: 'edit/:id',
-            loadComponent: () => import('./pages/edit/edit.component').then(m => m.EditComponent),
-            data: { breadcrumb: 'Editar Heroe' }
-        }
-    ]
-}];
-
-
-
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/index/index.component').then((m) => m.IndexComponent),
+        data: { breadcrumb: '' },
+      },
+      {
+        path: 'add',
+        loadComponent: () =>
+          import('./pages/edit/edit.component').then((m) => m.EditComponent),
+        data: { breadcrumb: 'Añadir Heroe' },
+      },
+      {
+        path: 'edit/:id',
+        loadComponent: () =>
+          import('./pages/edit/edit.component').then((m) => m.EditComponent),
+        data: { breadcrumb: 'Editar Heroe' },
+      },
+    ],
+  },
+];

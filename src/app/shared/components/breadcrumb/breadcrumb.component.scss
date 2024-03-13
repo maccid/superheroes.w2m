@@ -1,22 +1,22 @@
 ol.breadcrumb {
-    list-style: none;
-    display: flex;
-    gap: 6px;
-    color: white !important;
-    padding: 0;
-    margin: 0;
-    li {
-        +li::before{
-            float: left;
-            padding-right: 6px;
-            content: "·";
-        }
-        a {
-            color: white;
-            text-decoration: none;
-            &[disabled] {
-                color: rgb(117, 116, 116);
-            }
-        }
-    }   
+  list-style: none;
+  display: flex;
+  gap: 6px;
+  color: white !important;
+  padding: 0;
+  margin: 0;
+  li {
+    + li::before {
+      float: left;
+      padding-right: 6px;
+      content: "·";
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      &[disabled] {
+        color: rgb(117, 116, 116);
+      }
+    }
+  }
 }

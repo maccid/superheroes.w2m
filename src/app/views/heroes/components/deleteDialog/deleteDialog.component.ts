@@ -1,7 +1,10 @@
-
 import { Component, Inject } from '@angular/core';
 
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -9,13 +12,11 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
   templateUrl: './deleteDialog.component.html',
-  styleUrls: ['deleteDialog.component.scss']
+  styleUrls: ['deleteDialog.component.scss'],
 })
 export class DeleteDialogComponent {
-
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public id: any
+    @Inject(MAT_DIALOG_DATA) public id: any,
   ) {}
-
 }

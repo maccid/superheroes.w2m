@@ -1,52 +1,49 @@
 @font-face {
-    font-family: 'SuperHeroesFont';
-    src: url('../../../assets/fonts/superheroes.ttf') format('truetype');
-  }
-  
-  .superheroes-font {
-    font-family: 'SuperHeroesFont', sans-serif;
-    &.h1 {
-      font-size: 2rem;
-      line-height: 2rem;
-    }
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    padding: 0 2.5rem;
-  
-    img {  
-        height: 200px;
-        width: 200px !important;
-    }
+  font-family: "SuperHeroesFont";
+  src: url("../../../assets/fonts/superheroes.ttf") format("truetype");
+}
 
-    &:first-child {
-      padding-top: 2.5rem;
-    }
-    &.text-center {
-      text-align: center;
-    }
-    .centered {
-      max-width: 960px;
-      width: 100%;
-    }
-    
+.superheroes-font {
+  font-family: "SuperHeroesFont", sans-serif;
+  &.h1 {
+    font-size: 2rem;
+    line-height: 2rem;
   }
-  
-  .doc-title {
-    margin-top: 0.5rem;
-    p {
-      border-bottom: 1px solid;
-    }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 0 2.5rem;
+
+  img {
+    height: 200px;
+    width: 200px !important;
   }
-  .container-doc {
-    margin-top: 1.5rem;
-    padding: 0 2.5rem;
+
+  &:first-child {
+    padding-top: 2.5rem;
   }
-  
-  mat-accordion {
-    text-align: justify;
+  &.text-center {
+    text-align: center;
   }
-  
-  
+  .centered {
+    max-width: 960px;
+    width: 100%;
+  }
+}
+
+.doc-title {
+  margin-top: 0.5rem;
+  p {
+    border-bottom: 1px solid;
+  }
+}
+.container-doc {
+  margin-top: 1.5rem;
+  padding: 0 2.5rem;
+}
+
+mat-accordion {
+  text-align: justify;
+}

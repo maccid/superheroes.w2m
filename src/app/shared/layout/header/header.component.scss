@@ -1,26 +1,26 @@
 header.floating {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    .mat-toolbar {
-        background-color: #434c50;
-        .home-icon {
-            padding: 13px;
-            > img {
-                width: 64px;
-            }
-        }
-        .spacer {
-            flex: 1 1 auto;
-        }
-        button {
-            margin: 8px 8px 8px 0;
-        }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  .mat-toolbar {
+    background-color: #434c50;
+    .home-icon {
+      padding: 13px;
+      > img {
+        width: 64px;
+      }
     }
+    .spacer {
+      flex: 1 1 auto;
+    }
+    button {
+      margin: 8px 8px 8px 0;
+    }
+  }
 }
 
 button.active {
-    background: #BFCB3B !important;
+  background: #bfcb3b !important;
 }

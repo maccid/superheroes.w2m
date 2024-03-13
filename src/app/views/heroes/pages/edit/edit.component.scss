@@ -1,16 +1,15 @@
-
-
 mat-card {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem auto;
-    max-width: 600px;
-    padding: 1.5rem 0.75rem;
-}
-form  {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  max-width: 600px;
+  padding: 1.5rem 0.75rem;
+
+  form {
     display: flex;
     flex-direction: column;
     margin: 1rem auto;
     gap: 20px;
     margin-top: 1.5rem;
+  }
 }

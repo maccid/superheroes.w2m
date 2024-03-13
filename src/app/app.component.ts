@@ -15,9 +15,8 @@ import { ToolbarComponent } from './shared/layout/toolbar/toolbar.component';
     <main class="content">
       <app-toolbar></app-toolbar>
       <router-outlet></router-outlet>
-    </main> 
-    `,
-  styleUrls: ['app.component.scss']
+    </main>
+  `,
+  styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
-}
+export class AppComponent {}
