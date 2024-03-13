@@ -20,7 +20,7 @@ import { MatCardModule } from '@angular/material/card';
   ],
   styleUrls: ['filterSearch.component.scss'],
 })
-export class filterSearchComponent implements OnInit {
+export class FilterSearchComponent implements OnInit {
   private _filterKey = 'heroes.search';
 
   filterValue: string = '';

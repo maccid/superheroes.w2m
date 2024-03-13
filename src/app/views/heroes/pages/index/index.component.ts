@@ -5,11 +5,11 @@ import {
   WritableSignal,
   signal,
 } from '@angular/core';
+
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 
 import { MatTableModule } from '@angular/material/table';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,16 +17,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+import { Subject, takeUntil } from 'rxjs';
+
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
+import { NotifierService } from 'src/app/core/services/notifier.service';
+
+import { AddButtonComponent } from 'src/app/shared/components/add-button/add-button.component';
 
 import { Hero } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.services';
 
 import { DeleteDialogComponent } from '../../components/deleteDialog/deleteDialog.component';
-import { filterSearchComponent } from '../../components/filterSearch/filterSearch.component';
-
-import { NotifierService } from 'src/app/core/services/notifier.service';
-import { Subject, takeUntil } from 'rxjs';
+import { FilterSearchComponent } from '../../components/filterSearch/filterSearch.component';
 
 @Component({
   standalone: true,
@@ -39,7 +42,8 @@ import { Subject, takeUntil } from 'rxjs';
     MatTooltipModule,
     RouterLink,
     TitleCasePipe,
-    filterSearchComponent,
+    FilterSearchComponent,
+    AddButtonComponent,
   ],
   templateUrl: './index.component.html',
   styleUrls: ['index.component.scss'],

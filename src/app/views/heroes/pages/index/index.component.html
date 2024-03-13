@@ -1,12 +1,7 @@
-<button
-  class="add"
-  routerLink="/heroes/add"
-  mat-fab
-  color="primary"
-  matTooltip="Añadir Heroe"
->
-  +
-</button>
+<app-add-button
+  [routerLink]="'/heroes/add'"
+  [tooltipText]="'asas'"
+></app-add-button>
 <app-filter (filterText)="applyFilter($event)"></app-filter>
 
 <mat-card>

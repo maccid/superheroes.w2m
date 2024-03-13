@@ -17,7 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.services';
-import { SnackbarService } from 'src/app/core/services/snackbar.service';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Component({
   standalone: true,
@@ -54,7 +54,7 @@ export class EditComponent implements OnInit {
     private _actroute: ActivatedRoute,
     private _route: Router,
     private _heroesService: HeroesService,
-    private _snackbarService: SnackbarService,
+    private _notifierService: NotifierService,
   ) {}
 
   ngOnInit(): void {
@@ -84,15 +84,20 @@ export class EditComponent implements OnInit {
       return;
     }
 
-    console.log(JSON.stringify(this.heroForm.value, null, 2));
+    const id = this._actroute.snapshot.paramMap.get('id') as string;
 
-    console.log(this.heroForm.value);
+    const http =
+      id != null && id != ''
+        ? this._heroesService.update(this.heroForm.getRawValue())
+        : this._heroesService.create(this.heroForm.getRawValue());
 
-    this._heroesService.create(this.heroForm.value).subscribe(() => {
-      this._snackbarService.openSuccess(
-        'El heroe ha sido creado correctamente',
-      );
-      console.log('Post created successfully!');
+    http.subscribe(() => {
+      const type = id != null && id != '' ? 'editado' : 'creado';
+
+      const message = `El heroe ${this.heroForm.value.id} ha sido ${type} correctamente`;
+
+      this._notifierService.openSuccess(message);
+
       this._route.navigateByUrl('heroes');
     });
   }
