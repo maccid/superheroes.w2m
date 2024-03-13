@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '@env/environment';
-import { Hero } from '../interfaces/heroes.interface';
+import { Hero } from './heroes.interface';
 
 @Injectable({ providedIn: 'root' })
 export class HeroesService {

@@ -15,8 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 
 import { Router } from '@angular/router';
-import { Hero, Publisher } from '../../interfaces/heroes.interface';
-import { HeroesService } from '../../services/heroes.services';
+import { Hero, Publisher } from '../../heroes.interface';
+import { HeroesService } from '../../heroes.services';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Component({

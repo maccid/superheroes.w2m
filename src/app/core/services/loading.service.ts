@@ -5,11 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class LoadingService {
-  public numberOfRequests: number = 0;
+  private _numberOfRequests: number = 0;
   public showSpinner: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   handleRequest = (state: string = 'hide'): void => {
-    this.numberOfRequests = state === 'show' ? this.numberOfRequests + 1 : this.numberOfRequests - 1;
-    this.showSpinner.next(this.numberOfRequests > 0);
+    this._numberOfRequests = state === 'show' ? this._numberOfRequests + 1 : this._numberOfRequests - 1;
+    this.showSpinner.next(this._numberOfRequests > 0);
   };
 }

@@ -1,8 +1,8 @@
 <app-add-button
-  [routerLink]="'/heroes/add'"
-  [tooltipText]="'asas'"
+  [routerLink]="route"
+  [tooltipText]="tooltipAdd"
 ></app-add-button>
-<app-filter (filterText)="applyFilter($event)"></app-filter>
+<app-filter [filterKey]="filterKey" (filterText)="applyFilter($event)"></app-filter>
 
 <mat-card>
   <mat-card-content class="no-padding">

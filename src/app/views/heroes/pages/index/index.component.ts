@@ -25,11 +25,11 @@ import { NotifierService } from 'src/app/core/services/notifier.service';
 
 import { AddButtonComponent } from 'src/app/shared/components/add-button/add-button.component';
 
-import { Hero } from '../../interfaces/heroes.interface';
-import { HeroesService } from '../../services/heroes.services';
+import { Hero } from '../../heroes.interface';
+import { HeroesService } from '../../heroes.services';
 
-import { DeleteDialogComponent } from '../../components/deleteDialog/deleteDialog.component';
-import { FilterSearchComponent } from '../../components/filterSearch/filterSearch.component';
+import { DeleteDialogComponent } from 'src/app/shared/components/delete-dialog/delete-dialog.component';
+import { FilterSearchComponent } from 'src/app/shared/components/filter-search/filter-search.component';
 
 @Component({
   standalone: true,
@@ -50,6 +50,12 @@ import { FilterSearchComponent } from '../../components/filterSearch/filterSearc
 })
 export class IndexComponent implements OnInit {
   @Input() searchFilter: string = '';
+
+  route: string = '/heroes/add';
+  tooltipAdd: string = 'Añadir Heroe';
+  filterKey: string = 'heroes.search';
+  viewKey: string = 'heroes.view'
+
   dataSource: WritableSignal<Hero[]> = signal([]);
   displayedColumns: string[] = [
     'superhero',
@@ -57,8 +63,6 @@ export class IndexComponent implements OnInit {
     'publisher',
     'actions',
   ];
-
-  private _filterKey = 'heroes.search';
   private _unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -69,7 +73,7 @@ export class IndexComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const filterText = localStorage.getItem(this._filterKey) || '';
+    const filterText = localStorage.getItem(this.filterKey) || '';
 
     this._breakpointObserver
       .observe([Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape])
@@ -90,7 +94,7 @@ export class IndexComponent implements OnInit {
   }
 
   applyFilter(filterText: string = '') {
-    localStorage.setItem(this._filterKey, filterText);
+    localStorage.setItem(this.filterKey, filterText);
 
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
