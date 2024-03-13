@@ -1,4 +1,4 @@
-import { Component, Input, WritableSignal, signal } from '@angular/core';
+import { Component, OnInit, Input, WritableSignal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 
@@ -28,7 +28,7 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './index.component.html',
   styleUrls: ['index.component.scss']
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit {
 
   @Input() searchFilter: string = '';
   dataSource: WritableSignal<Hero[]> = signal([]);
@@ -79,7 +79,7 @@ export class IndexComponent {
   
   }
 
-  openDeleteDialog(id: any): void {
+  openDeleteDialog(id: string): void {
     const dialogRef = this._dialog.open(DeleteDialogComponent, {
       width: '400px',
       data: id
@@ -88,7 +88,7 @@ export class IndexComponent {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result) {
-        this._heroesService.delete(id).subscribe(heroes => {
+        this._heroesService.delete(id).subscribe(() => {
           this._snackbarService.openSuccess('El heroe '+id+' ha sido borrado correctamente');
           this.ngOnInit();
         });         

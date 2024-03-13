@@ -1,9 +1,7 @@
 <button class="add" routerLink="/heroes/add" mat-fab color="primary">+</button>
-<mat-card>
-    <mat-card-content>
-        <filter-search (filterText)="applyFilter($event)"></filter-search>
-    </mat-card-content>
-</mat-card>
+
+        <app-filter (filterText)="applyFilter($event)"></app-filter>
+
 <mat-card>
     <mat-card-content class="no-padding">
 

@@ -1,20 +1,21 @@
 
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'filter-search',
+  selector: 'app-filter',
   standalone: true,
   templateUrl: './filterSearch.component.html',
-  imports:[FormsModule, MatInputModule, MatIconModule, MatButtonModule],
+  imports:[FormsModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule],
   styleUrls: ['filterSearch.component.scss']
 })
-export class filterSearchComponent {
+export class filterSearchComponent implements OnInit {
 
   private _filterKey = 'heroes.search';
 

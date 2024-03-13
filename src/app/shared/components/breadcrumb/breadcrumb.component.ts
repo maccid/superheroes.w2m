@@ -27,7 +27,7 @@ export class BreadcrumbComponent implements OnInit {
     });
   }
 
-  private buildBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: { label: string, url: string }[] = []): any {
+  private buildBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: { label: string, url: string }[] = []):  { label: string, url: string }[] | any {
 
     const children: ActivatedRoute[] = route.children;
 
