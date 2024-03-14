@@ -1,0 +1,46 @@
+<mat-grid-list [cols]="getGridColumns()" [rowHeight]="getSizeHeight()">
+  @for (element of dataSource; track element) {
+    <mat-grid-tile>
+      <mat-card
+        [ngClass]="{ vertical: isVertical(), horizontal: !isVertical() }"
+      >
+        <img
+          mat-card-xl-image
+          src="assets/heroes/{{ element.id }}.jpg"
+          alt="{{ element.superheroe }}"
+        />
+        <div>
+          @for (field of fields; track field) {
+            @if (field.titlecase) {
+              <mat-card-title>
+                {{ element[field.name] | titlecase }}</mat-card-title
+              >
+            } @else {
+              <mat-card-content>
+                <p>
+                  <b>{{ field.label }}: </b>
+                  <label>{{
+                    field.titlecase
+                      ? (element[field.name] | titlecase)
+                      : element[field.name]
+                  }}</label>
+                </p>
+              </mat-card-content>
+            }
+          }
+          <mat-card-actions>
+            @for (action of actions; track action) {
+              <button
+                mat-icon-button
+                (click)="onClickElement(action.name, element.id)"
+                [matTooltip]="action.label"
+              >
+                <mat-icon>{{ action.name }}</mat-icon>
+              </button>
+            }
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  }
+</mat-grid-list>

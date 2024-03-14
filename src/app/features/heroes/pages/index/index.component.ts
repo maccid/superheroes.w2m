@@ -6,23 +6,17 @@ import {
   signal,
 } from '@angular/core';
 
-import { Router, RouterLink } from '@angular/router';
-import { TitleCasePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatGridListModule } from '@angular/material/grid-list';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { View } from 'src/app/core/interfaces/view.interface';
+import { Fields } from 'src/app/core/interfaces/fields.interface';
+import { Actions } from 'src/app/core/interfaces/actions.interface';
 
 import { AddButtonComponent } from 'src/app/shared/components/add-button/add-button.component';
 import { DeleteDialogComponent } from 'src/app/shared/components/delete-dialog/delete-dialog.component';
@@ -31,22 +25,13 @@ import { ViewModeComponent } from 'src/app/shared/components/view-mode/view-mode
 import { IndexGridComponent } from 'src/app/shared/components/index-grid/index-grid.component';
 import { IndexListComponent } from 'src/app/shared/components/index-list/index-list.component';
 
-import { Hero } from '../../heroes.interface';
 import { HeroesService } from '../../heroes.services';
-import { Fields } from 'src/app/core/interfaces/fields.interface';
-import { Actions } from 'src/app/core/interfaces/actions.interface';
+import { Hero } from '../../heroes.interface';
 
 @Component({
   standalone: true,
   imports: [
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
     MatCardModule,
-    MatGridListModule,
-    MatTooltipModule,
-    RouterLink,
-    TitleCasePipe,
     FilterSearchComponent,
     AddButtonComponent,
     ViewModeComponent,
@@ -69,7 +54,7 @@ export class IndexComponent implements OnInit {
   };
 
   fields: Fields[] = [
-    { name: 'superhero', label: 'Heroe', flex: 2 },
+    { name: 'superhero', label: 'Heroe', flex: 2, titlecase: true },
     { name: 'alter_ego', label: 'Personaje', flex: 2 },
     { name: 'publisher', label: 'Editorial', flex: 2, hide: ['sm'] },
     { name: 'first_appearance', label: 'Estreno', flex: 2, hide: ['sm', 'md'] },
@@ -100,16 +85,15 @@ export class IndexComponent implements OnInit {
   }
 
   actionEvent(event: { action: string; id: string }) {
-
-    switch(event.action){
+    switch (event.action) {
       case 'edit':
-        this._route.navigateByUrl('heroes/edit/'+event.id);
+        this._route.navigateByUrl('heroes/edit/' + event.id);
         break;
       case 'delete':
         this.openDeleteDialog(event.id);
         break;
-        
-    }  }
+    }
+  }
 
   applyFilter(filterText: string = '') {
     this._unsubscribe$.next();
