@@ -1,31 +1,36 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from '../app/app.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { AppComponent } from 'src/app/app.component';
+import { HeaderComponent } from 'src/app/shared/layout/header/header.component';
+import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
+import { LoaderComponent } from 'src/app/shared/layout/loader/loader.component';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [
+        RouterTestingModule,
+        AppComponent,
+        HeaderComponent,
+        ToolbarComponent,
+        LoaderComponent,
+      ],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
 
-  it(`should have the 'app.w2m' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('app.w2m');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Hello, app.w2m',
-    );
   });
+
+  it('Debe crear el componente', () => {
+    expect(component).toBeTruthy();
+  });
+
 });

@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NotifierService } from 'src/app/core/services/notifier.service';
+import { GridService } from 'src/app/core/services/grid.service';
 
 describe('GridService', () => {
-  let service: NotifierService;
+  let service: GridService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NotifierService],
+      providers: [GridService],
     });
-    service = TestBed.inject(NotifierService);
+    service = TestBed.inject(GridService);
   });
 
   it('Debe crear el servicio', () => {

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 
 import { IndexListComponent } from 'src/app/shared/components/index-list/index-list.component';
 
@@ -8,16 +8,18 @@ describe('IndexListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IndexListComponent]
-    })
-    .compileComponents();
-    
+      imports: [IndexListComponent],
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(IndexListComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Debe crear el componente', () => {
     expect(component).toBeTruthy();
   });
 });

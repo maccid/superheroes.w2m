@@ -1,21 +1,21 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FilterSearchComponent } from 'src/app/shared/components/filter-search/filter-search.component';
+import { HomeComponent } from 'src/app/features/home/home.component';
 
-describe('FilterSearchComponent', () => {
-  let component: FilterSearchComponent;
-  let fixture: ComponentFixture<FilterSearchComponent>;
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, FilterSearchComponent],
+      imports: [MatExpansionModule, NoopAnimationsModule, HomeComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FilterSearchComponent);
+    fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
