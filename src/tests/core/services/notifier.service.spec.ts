@@ -27,7 +27,7 @@ describe('NotifierService', () => {
     const errorMessage = 'Error message';
     service.openError(errorMessage);
 
-    expect(openSpyStub).toHaveBeenCalledWith(errorMessage, 'Cerrar', {
+    expect(openSpyStub).toHaveBeenCalledOnceWith(errorMessage, 'Cerrar', {
       duration: 2000,
       panelClass: ['error-snackbar'],
     });
@@ -39,7 +39,7 @@ describe('NotifierService', () => {
     const successMessage = 'Success message';
     service.openSuccess(successMessage);
 
-    expect(openSpyStub).toHaveBeenCalledWith(successMessage, 'Cerrar', {
+    expect(openSpyStub).toHaveBeenCalledOnceWith(successMessage, 'Cerrar', {
       duration: 2000,
       panelClass: ['success-snackbar'],
     });
