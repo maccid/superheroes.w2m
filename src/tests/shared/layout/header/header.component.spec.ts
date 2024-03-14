@@ -1,4 +1,12 @@
-import { ComponentFixture, TestBed, flush, tick } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
+
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
@@ -16,8 +24,8 @@ describe('HeaderComponent', () => {
 
   let compiled: HTMLElement;
 
-  let homeButton: any;
-  let heroesButton: any;
+  let homeButton: DebugElement;
+  let heroesButton: DebugElement;
 
   let router: Router;
 
@@ -67,27 +75,22 @@ describe('HeaderComponent', () => {
     expect(heroesButton).toBeTruthy();
   });
 
-  it('Debe tener linkshould apply the "active" class when routerLink is active', () => {
+  //Debe ser async para que detecte el cambio de clase en el botón
+  it('Debe haber solo un botón con la clase activo', fakeAsync(() => {
     expect(homeButton.nativeElement.classList.contains('active')).toBeFalsy();
     expect(heroesButton.nativeElement.classList.contains('active')).toBeFalsy();
 
     router.navigate(['home']);
-    fixture.detectChanges();
-  /*
+    tick();
+
     expect(homeButton.nativeElement.classList.contains('active')).toBeTruthy();
     expect(heroesButton.nativeElement.classList.contains('active')).toBeFalsy();
 
-  
-    var activeLinks = fixture.debugElement.queryAll(By.css('.active'));
-    expect(activeLinks.length).withContext('Solo un enlace activo').toBe(1);
-    //expect(activeLinks[0].linkParams).withContext( 'active link should be for Home').toBe('/edit');
-
     router.navigate(['heroes']);
-    fixture.detectChanges();
-
-    expect(homeButton.nativeElement.classList.contains('active')).withContext('Solo un enlace activo').toBeFalsy();
-    expect(
-      heroesButton.nativeElement.classList.contains('active'),
-    ).toBeTruthy();*/
-  });
+    tick();
+    expect(homeButton.nativeElement.classList.contains('active')).toBeFalsy();
+    expect(heroesButton.nativeElement.classList.contains('active'))
+      .withContext('Boton enlace heroe activo')
+      .toBeTruthy();
+  }));
 });
