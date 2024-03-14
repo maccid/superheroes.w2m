@@ -1,5 +1,6 @@
-export interface Hero {
-  id: string;
+import { DataSource } from "src/app/core/interfaces/data-source.interface";
+
+export interface Hero extends DataSource{
   superhero: string;
   publisher: Publisher;
   alter_ego: string;

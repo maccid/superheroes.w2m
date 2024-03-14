@@ -70,14 +70,7 @@ mat-card {
       white-space: nowrap;
       overflow: hidden;
       width: 302px;
-      span {
-        color: white;
-        text-decoration: none;
-        cursor: pointer;
-        &:hover {
-          color: rgb(255, 152, 0);
-        }
-      }
+    
     }
   }
 

@@ -1,4 +1,10 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -28,14 +34,15 @@ import { GridService } from 'src/app/core/services/grid.service';
 export class IndexGridComponent {
   @Input({ required: true }) fields: Fields[] = [];
   @Input({ required: false }) actions: Actions[] = [];
-  @Input({ required: true }) dataSource: any = [];
+  @Input({ required: true }) dataSource: any[] = [];
 
   @Output() actionEvent: EventEmitter<{ action: string; id: string }> =
     new EventEmitter<{ action: string; id: string }>();
 
   displayedColumns: string[] = [];
+
   constructor(private _gridService: GridService) {}
-  
+
   onClickElement(action: string, id: string): void {
     this.actionEvent.emit({ action, id });
   }
@@ -53,19 +60,18 @@ export class IndexGridComponent {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
+  onResize(): void {
     this.getGridColumns();
     this.getSizeHeight();
   }
 
   getDefaultImage(idx: number): void {
-
     const img = document.querySelectorAll('img[mat-card-xl-image]');
     const select = img[idx] as HTMLImageElement;
-    
+
     if (select) {
       select.src = 'assets/heroes/default.jpg';
     }
   }
-  
+
 }

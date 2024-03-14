@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
 
 import { Subscription, fromEvent } from 'rxjs';
@@ -10,7 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { Fields } from 'src/app/core/interfaces/fields.interface';
 import { Actions } from 'src/app/core/interfaces/actions.interface';
-
+import { DataSource } from 'src/app/core/interfaces/data-source.interface';
 
 @Component({
   selector: 'app-index-list',
@@ -19,10 +19,10 @@ import { Actions } from 'src/app/core/interfaces/actions.interface';
   templateUrl: './index-list.component.html',
   styleUrl: './index-list.component.css',
 })
-export class IndexListComponent implements OnInit {
+export class IndexListComponent implements OnInit, OnDestroy {
   @Input({ required: true }) fields: Fields[] = [];
   @Input({ required: false }) actions: Actions[] = [];
-  @Input({ required: true }) dataSource: any = [];
+  @Input({ required: true }) dataSource: DataSource[] = [];
 
   @Output() actionEvent: EventEmitter<{ action: string; id: string }> =
     new EventEmitter<{ action: string; id: string }>();

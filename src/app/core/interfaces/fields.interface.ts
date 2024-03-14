@@ -1,7 +1,7 @@
 export interface Fields {
   name: string;
   label: string;
-  flex: number;
+  flex?: number;
   titlecase?: boolean;
   hide?: string[];
 }
