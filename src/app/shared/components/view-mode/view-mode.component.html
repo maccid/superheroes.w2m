@@ -3,7 +3,7 @@
     mat-icon-button
     matTooltip="Vista Grid"
     (click)="onViewChange('grid')"
-    [disabled]="viewMode !== 'table'"
+    [disabled]="options.mode !== 'table'"
   >
     <mat-icon>dashboard</mat-icon>
   </button>
@@ -11,7 +11,7 @@
     mat-icon-button
     matTooltip="Vista Tabla"
     (click)="onViewChange('table')"
-    [disabled]="viewMode !== 'grid'"
+    [disabled]="options.mode !== 'grid'"
   >
     <mat-icon>view_list</mat-icon>
   </button>

@@ -6,9 +6,12 @@ import {
   RouterLink,
 } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { filter, map } from 'rxjs/operators';
 
 import { MatButtonModule } from '@angular/material/button';
+
+import { filter, map } from 'rxjs/operators';
+
+import { Breadcrumb } from 'src/app/core/interfaces/breadcrumb.interface';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -18,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./breadcrumb.component.scss'],
 })
 export class BreadcrumbComponent implements OnInit {
-  breadcrumbs: { label: string; url: string }[] = [];
+  breadcrumbs: Breadcrumb[] = [];
 
   constructor(
     private router: Router,
@@ -39,8 +42,8 @@ export class BreadcrumbComponent implements OnInit {
   private buildBreadcrumbs(
     route: ActivatedRoute,
     url: string = '',
-    breadcrumbs: { label: string; url: string }[] = [],
-  ): { label: string; url: string }[] {
+    breadcrumbs: Breadcrumb[] = [],
+  ): Breadcrumb[] {
     const children: ActivatedRoute[] = route.children;
 
     for (const child of children) {

@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 
 import { MatTableModule } from '@angular/material/table';
@@ -22,15 +22,19 @@ import { Subject, takeUntil } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { View } from 'src/app/core/interfaces/view.interface';
 
 import { AddButtonComponent } from 'src/app/shared/components/add-button/add-button.component';
-
-import { Hero } from '../../heroes.interface';
-import { HeroesService } from '../../heroes.services';
-
 import { DeleteDialogComponent } from 'src/app/shared/components/delete-dialog/delete-dialog.component';
 import { FilterSearchComponent } from 'src/app/shared/components/filter-search/filter-search.component';
 import { ViewModeComponent } from 'src/app/shared/components/view-mode/view-mode.component';
+import { IndexGridComponent } from 'src/app/shared/components/index-grid/index-grid.component';
+import { IndexListComponent } from 'src/app/shared/components/index-list/index-list.component';
+
+import { Hero } from '../../heroes.interface';
+import { HeroesService } from '../../heroes.services';
+import { Fields } from 'src/app/core/interfaces/fields.interface';
+import { Actions } from 'src/app/core/interfaces/actions.interface';
 
 @Component({
   standalone: true,
@@ -46,6 +50,8 @@ import { ViewModeComponent } from 'src/app/shared/components/view-mode/view-mode
     FilterSearchComponent,
     AddButtonComponent,
     ViewModeComponent,
+    IndexListComponent,
+    IndexGridComponent,
   ],
   templateUrl: './index.component.html',
   styleUrls: ['index.component.scss'],
@@ -56,56 +62,54 @@ export class IndexComponent implements OnInit {
   route: string = '/heroes/add';
   tooltipAdd: string = 'Añadir Heroe';
   filterKey: string = 'heroes.search';
-  viewKey: string = 'heroes.view';
-  viewMode: string = '';
 
-  fields: Object[] = [
-    { name: 'superhero', tag: 'Heroe', type: 'text', flex: '2'},
-   /* { name: 'species', tag: 'Especie', type: 'text' },
-    { name: 'status', tag: 'Estado', type: 'select', options: ['Alive', 'Dead', 'unknown'] },
-    { name: 'gender', tag: 'Género', type: 'select', options: ['Female', 'Male', 'Genderless', 'unknown'] },
-    { name: 'limit', tag: 'Limite', type: 'hidden', value: '5'}*/
+  view: View = {
+    key: 'heroes.view',
+    mode: '',
+  };
+
+  fields: Fields[] = [
+    { name: 'superhero', label: 'Heroe', flex: 2 },
+    { name: 'alter_ego', label: 'Personaje', flex: 2 },
+    { name: 'publisher', label: 'Editorial', flex: 2, hide: ['sm'] },
+    { name: 'first_appearance', label: 'Estreno', flex: 2, hide: ['sm', 'md'] },
+  ];
+
+  actions: Actions[] = [
+    { name: 'edit', label: 'Editar' },
+    { name: 'delete', label: 'Eliminar' },
   ];
 
   dataSource: WritableSignal<Hero[]> = signal([]);
-  displayedColumns: string[] = [
-    'superhero',
-    'alter_ego',
-    'publisher',
-    'actions',
-  ];
+
   private _unsubscribe$ = new Subject<void>();
 
   constructor(
     private _heroesService: HeroesService,
+    private _route: Router,
     private _dialog: MatDialog,
     private _notifierService: NotifierService,
-    private _breakpointObserver: BreakpointObserver,
   ) {}
 
   ngOnInit(): void {
     const filterText = localStorage.getItem(this.filterKey) || '';
-    const viewValue = localStorage.getItem(this.viewKey) || '';
-
-
-    this._breakpointObserver
-      .observe([Breakpoints.HandsetPortrait, Breakpoints.HandsetLandscape])
-      .subscribe((result) => {
-        if (result.matches && window.innerWidth < 600) {
-          this.displayedColumns = ['superhero', 'alter_ego', 'actions'];
-        } else {
-          this.displayedColumns = [
-            'superhero',
-            'alter_ego',
-            'publisher',
-            'actions',
-          ];
-        }
-      });
+    const viewValue = localStorage.getItem(this.view.key) || '';
 
     this.applyFilter(filterText);
     this.applyView(viewValue);
   }
+
+  actionEvent(event: { action: string; id: string }) {
+
+    switch(event.action){
+      case 'edit':
+        this._route.navigateByUrl('heroes/edit/'+event.id);
+        break;
+      case 'delete':
+        this.openDeleteDialog(event.id);
+        break;
+        
+    }  }
 
   applyFilter(filterText: string = '') {
     this._unsubscribe$.next();
@@ -123,7 +127,7 @@ export class IndexComponent implements OnInit {
   }
 
   applyView(viewValue: string = '') {
-    this.viewMode = viewValue;
+    this.view.mode = viewValue;
   }
 
   openDeleteDialog(id: string): void {
