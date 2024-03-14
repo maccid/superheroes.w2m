@@ -57,5 +57,15 @@ export class IndexGridComponent {
     this.getGridColumns();
     this.getSizeHeight();
   }
+
+  getDefaultImage(idx: number): void {
+
+    const img = document.querySelectorAll('img[mat-card-xl-image]');
+    const select = img[idx] as HTMLImageElement;
+    
+    if (select) {
+      select.src = 'assets/heroes/default.jpg';
+    }
+  }
   
 }
