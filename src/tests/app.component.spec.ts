@@ -10,6 +10,8 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
+  let compiled: HTMLElement;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -25,7 +27,8 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-
+    compiled = fixture.debugElement.nativeElement;
+    
     fixture.detectChanges();
   });
 
@@ -33,4 +36,23 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('Debe contener HeaderComponent', () => {
+    const headerComponent = compiled.querySelector('app-header');
+    expect(headerComponent).toBeTruthy();
+  });
+
+  it('Debe contener ToolbarComponent', () => {
+    const toolbarComponent = compiled.querySelector('app-toolbar');
+    expect(toolbarComponent).toBeTruthy();
+  });
+
+  it('Debe contener LoaderComponent', () => {
+    const loaderComponent = compiled.querySelector('app-loader');
+    expect(loaderComponent).toBeTruthy();
+  });
+
+  it('Debe contener el enrutador', () => {
+    const routerOutlet = compiled.querySelector('router-outlet');
+    expect(routerOutlet).toBeTruthy();
+  });
 });
