@@ -39,8 +39,8 @@ export class EditComponent implements OnInit {
   heroForm: FormGroup = new FormGroup({
     id: new FormControl<string>('', Validators.required),
     superhero: new FormControl<string>('', Validators.required),
-    publisher: new FormControl<string>('', Validators.required),
     alter_ego: new FormControl<string>('', Validators.required),
+    publisher: new FormControl<string>('', Validators.required),
     first_appearance: new FormControl<string>(''),
     characters: new FormControl<string>(''),
     description: new FormControl<string>(''),

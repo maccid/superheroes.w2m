@@ -10,14 +10,14 @@ export class NotifierService {
 
   public openError(message: string): void {
     this.snackBar.open(message, 'Cerrar', {
-      duration: 5000,
+      duration: 2000,
       panelClass: ['error-snackbar'],
     });
   }
 
   public openSuccess(message: string): void {
     this.snackBar.open(message, 'Cerrar', {
-      duration: 5000,
+      duration: 2000,
       panelClass: ['success-snackbar'],
     });
   }
