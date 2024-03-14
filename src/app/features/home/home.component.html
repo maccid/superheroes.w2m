@@ -34,11 +34,23 @@
           </li>
           <br />
           <li>
-            <b>Página Heroes: </b> <br />Se muestra los superheroes en modo
-            tabla responsive. Se puede realizar diferentes acciones sobre el
-            listado. Además se ha añadido un filtro para superheroes que está
-            configurado para, aunque se cambie de página o se refresque, se
-            mantenga la información.
+            <b>Página Listado Heroes: </b> <br />Se muestra los superheroes en
+            modo tabla responsive o tarjeta según el modo de visionado que se
+            elija. <br />Se puede realizar diferentes acciones sobre el listado,
+            tales como editar o eliminar un heroe, aparte de poder añadir un
+            nuevo heore. <br />Además se ha añadido un filtro para superheroes
+            que está configurado para, aunque se cambie de página o se
+            refresque, se mantenga la información. <br />Se ha gestionado los
+            evento del filtro de tal manera que si se hace una nueva petición se
+            cancele la anterior para que no se produzca sobrecarga de peticiones
+            al servidor.
+          </li>
+          <br />
+
+          <li>
+            <b>Página Añadir/editar Heroes: </b> <br />Se muestra un formulario
+            para editar o añadir un nuevo heroe. <br />Si se edita se conserva el id,
+            el cual está vinculado a una imagen, si se crea un nuevo heroe se debe introducir el id.<br /> El ampo nombre del heroe se crea en mayuscula siempre.
           </li>
           <br />
         </ul>
@@ -79,7 +91,7 @@
           <li>
             <b>Core:</b> El Core es responsable de mantener los servicios
             globales. Contiene funciones comunes del proyecto, tales como
-            interceptores, servicios comunes, pipe, etc.
+            interceptores, servicios, pipe, etc.
           </li>
           <br />
           <li>
@@ -95,8 +107,8 @@
           </li>
           <br />
           <li>
-            <b>Features:</b> Esta ideado para modular la aplicación, es decir, por
-            cada nuevo módulo se crea una carpeta que contendrá toda la
+            <b>Features:</b> Esta ideado para modular la aplicación, es decir,
+            por cada nuevo módulo se crea una carpeta que contendrá toda la
             funcionalidad, aquí se situan servicio propios del módulo,
             interfaces, componentes, modelos y las diferentes páginas usadas,
             como en este caso listado de heroes y añadir/editar heroes. Si se
@@ -112,14 +124,22 @@
         </mat-expansion-panel-header>
         <p>
           Se ha generado distintos servicios para que los distintos componentes
-          puedan hacer diferentes acciones sobre el servicio. Los más imporantes
-          son:
+          puedan hacer acciones sobre el servicio. Los más imporantes son:
         </p>
         <ul>
           <li>
-            <b>Api:</b> Conectará los componente con la API, en este caso
-            consiste en un sencillo get que atacará a los endpoints definidos en
-            la API."
+            <b>Api:</b> Conecta los componente con la API, en este caso para el
+            módulo Heroes, poder realizar operciones CRUD sobre el.
+          </li>
+          <br />
+          <li>
+            <b>Loader:</b> Al obtener los datos se debe muestra un loader
+            informando al usuario de que los datos se están cargando
+          </li>
+          <br />
+          <li>
+            <b>Notifier:</b> Al crear / modificar / eliminar un elemento o en
+            caso de error, mostrar mensaje informativo al usuario.
           </li>
           <br />
         </ul>
