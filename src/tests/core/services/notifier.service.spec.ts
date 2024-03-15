@@ -10,8 +10,8 @@ describe('NotifierService', () => {
 
   let openSpyStub: jasmine.Spy;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       providers: [NotifierService],
     });
 

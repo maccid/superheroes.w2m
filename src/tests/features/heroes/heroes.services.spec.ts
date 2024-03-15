@@ -14,8 +14,8 @@ describe('HeroesService', () => {
   let httpMock: HttpTestingController;
   let url: string;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [HeroesService],
     });
@@ -31,7 +31,7 @@ describe('HeroesService', () => {
   it('Debe crear el servicio', () => {
     expect(service).toBeTruthy();
   });
-  //ToDo: Revisar
+  
   it('Debe mostrar listado de heroes', () => {
     const mockHeroes: Hero[] = [
       {
@@ -55,7 +55,11 @@ describe('HeroesService', () => {
 
     const req = httpMock.expectOne(`${url}/heroes`);
     expect(req.request.method).toBe('GET');
+    expect(req.cancelled).toBeFalsy(); 
+    expect(req.request.responseType).toEqual('json');
     req.flush(mockHeroes);
+
+    httpMock.verify();
   });
 
   it('Debe obtener un heroe por id', () => {
@@ -73,6 +77,8 @@ describe('HeroesService', () => {
 
     const req = httpMock.expectOne(`${url}/heroes/${id}`);
     expect(req.request.method).toBe('GET');
+    expect(req.cancelled).toBeFalsy(); 
+    expect(req.request.responseType).toEqual('json');
     req.flush(mockHero);
   });
 
@@ -91,6 +97,9 @@ describe('HeroesService', () => {
 
     const req = httpMock.expectOne(`${url}/heroes`);
     expect(req.request.method).toBe('POST');
+    expect(req.request.body).toBe(newHero);
+    expect(req.cancelled).toBeFalsy();
+    expect(req.request.responseType).toEqual('json'); 
     req.flush(newHero);
   });
 
@@ -108,6 +117,9 @@ describe('HeroesService', () => {
 
     const req = httpMock.expectOne(`${url}/heroes/${updatedHero.id}`);
     expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toBe(updatedHero);
+    expect(req.cancelled).toBeFalsy();
+    expect(req.request.responseType).toEqual('json'); 
     req.flush(updatedHero);
   });
 
@@ -120,6 +132,8 @@ describe('HeroesService', () => {
 
     const req = httpMock.expectOne(`${url}/heroes/${heroId}`);
     expect(req.request.method).toBe('DELETE');
+    expect(req.cancelled).toBeFalsy(); 
+    expect(req.request.responseType).toEqual('json');
     req.flush({});
   });
 });

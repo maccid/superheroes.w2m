@@ -5,8 +5,8 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 describe('LoadingService', () => {
   let service: LoadingService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       providers: [LoadingService],
     });
     service = TestBed.inject(LoadingService);
@@ -33,14 +33,17 @@ describe('LoadingService', () => {
     });
 
     it('Debe incrementear 2 veces y decrementar 1  el nº de peticiones. Estado verdadero. Luego vuelve a decrementar en 1 y terminar con estado a falso', () => {
-      
       service.handleRequest('show');
       service.handleRequest('show');
       service.handleRequest();
-      expect(service.showSpinner.value).withContext('Estado a verdadero').toBeTruthy();
+      expect(service.showSpinner.value)
+        .withContext('Estado a verdadero')
+        .toBeTruthy();
 
       service.handleRequest();
-      expect(service.showSpinner.value).withContext('Estado a falso').toBeFalsy();
+      expect(service.showSpinner.value)
+        .withContext('Estado a falso')
+        .toBeFalsy();
     });
   });
 });

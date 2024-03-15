@@ -5,8 +5,8 @@ import { GridService } from 'src/app/core/services/grid.service';
 describe('GridService', () => {
   let service: GridService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       providers: [GridService],
     });
 
