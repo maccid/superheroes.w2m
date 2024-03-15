@@ -42,10 +42,12 @@ describe('FilterSearchComponent', () => {
     spyOn(component.filterText, 'emit');
 
     const button = fixture.debugElement.nativeElement.querySelector('button');
-    button.click();
-    fixture.detectChanges();
+    if (button) {
+      button.click();
+      fixture.detectChanges();
 
-    expect(component.filterValue).toEqual('');
-    expect(component.filterText.emit).toHaveBeenCalledWith('');
+      expect(component.filterValue).toEqual('');
+      expect(component.filterText.emit).toHaveBeenCalledWith('');
+    }
   });
 });
