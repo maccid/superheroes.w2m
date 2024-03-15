@@ -65,7 +65,6 @@ describe('IndexComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  //ToDo: Revisar
   it('Debe aplicar filtro de busqueda', () => {
     const heroes: Hero[] = [
       {
@@ -73,25 +72,24 @@ describe('IndexComponent', () => {
         superhero: 'Superman',
         publisher: Publisher.DCComics,
         alter_ego: 'Kal-E',
-      },
-      {
-        id: 'marvel-spider',
-        superhero: 'Spider Man',
-        publisher: Publisher.MarvelComics,
-        alter_ego: 'Peter Parker',
-      },
+      }
     ];
 
     heroesServiceSpy.list.and.returnValue(of(heroes));
+    component.applyFilter('man');
 
-    component.applyFilter('Super');
-
-    expect(heroesServiceSpy.list).toHaveBeenCalledWith('?superhero_like=Super');
+    expect(heroesServiceSpy.list).toHaveBeenCalledWith('?superhero_like=man');
     expect(component.dataSource()).toEqual(heroes);
   });
 
   it('Debe cambiar modo de la vista', () => {
-    const viewValue = 'table';
+    let viewValue = 'table';
+
+    component.applyView(viewValue);
+
+    expect(component.view.mode).toEqual(viewValue);
+
+    viewValue = 'grid';
 
     component.applyView(viewValue);
 

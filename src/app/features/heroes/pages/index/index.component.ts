@@ -105,7 +105,7 @@ export class IndexComponent implements OnInit {
     this._heroesService
       .list(params)
       .pipe(takeUntil(this._unsubscribe$))
-      .subscribe((heroes) => {
+      .subscribe((heroes: Hero[]) => {
         this.dataSource.set(heroes);
       });
   }
