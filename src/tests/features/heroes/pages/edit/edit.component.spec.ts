@@ -1,9 +1,4 @@
-import {
-  TestBed,
-  ComponentFixture,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,15 +8,12 @@ import { HeroesService } from 'src/app/features/heroes/heroes.services';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { Hero, Publisher } from 'src/app/features/heroes/heroes.interface';
-
 describe('EditComponent', () => {
   let component: EditComponent;
   let fixture: ComponentFixture<EditComponent>;
 
   let heroesServiceSpy: jasmine.SpyObj<HeroesService>;
-  let notifierServiceSpy: jasmine.SpyObj<NotifierService>;
-  let routerSpy: jasmine.SpyObj<Router>;
+  let ActivatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -49,7 +41,7 @@ describe('EditComponent', () => {
           useValue: {
             snapshot: {
               paramMap: {
-                get: jasmine.createSpy('get').and.returnValue('1'),
+                get: jasmine.createSpy('get').and.returnValue('dc-batman'),
               },
             },
           },
@@ -69,6 +61,9 @@ describe('EditComponent', () => {
       NotifierService,
     ) as jasmine.SpyObj<NotifierService>;
 
+    ActivatedRouteSpy = TestBed.inject(
+      ActivatedRoute,
+    ) as jasmine.SpyObj<ActivatedRoute>;
     routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
   });
 
@@ -82,73 +77,49 @@ describe('EditComponent', () => {
   it('Debe crear el componente', () => {
     expect(component).toBeTruthy();
   });
-/*
-  it('should initialize with hero data when id is provided', fakeAsync(() => {
-    const hero: Hero = {
-      id: 'dc-superman',
-      superhero: 'Superman',
-      alter_ego: 'Clark Kent',
-      publisher: Publisher.DCComics,
-      first_appearance: 'Action Comics #1',
-      characters: 'Superman',
-      description: 'The Man of Steel',
-    };
 
-    heroesServiceSpy.get.and.returnValue(of(hero));
+  it('Debe estar desactivado el ID cuando edita heroe', () => {
+    const idControl = component.heroForm.get('id');
+    expect(idControl?.disabled).toBeTruthy();
+  });
 
+  it('Debe habilitar el ID cunado crea heroe', () => {
+    ActivatedRouteSpy.snapshot.paramMap.get = () => null;
+
+    fixture = TestBed.createComponent(EditComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    tick();
 
-    console.log(hero);
-    expect(component.heroForm.value).toEqual(hero);
-  }));*/
-  /*
-  it('should disable id field and call update when id is provided and form is submitted', fakeAsync(() => {
-    const hero : Hero = {
-      id: '1',
-      superhero: 'Superman',
-      alter_ego: 'Clark Kent',
-      publisher: Publisher.DCComics,
-      first_appearance: 'Action Comics #1',
-      characters: 'Superman',
-      description: 'The Man of Steel',
-    };
-    heroesServiceSpy.get.and.returnValue(of(hero));
-    heroesServiceSpy.update.and.returnValue(of<Hero>({}));
+    const idControl = component.heroForm.get('id');
+    expect(idControl?.disabled).toBeFalsy();
+  });
 
+  it('Debe mostrar el heroe con el nombre en Mayúsculas', () => {
+    const superheroInput = fixture.nativeElement.querySelector(
+      'input[formControlName="superhero"]',
+    );
+    superheroInput.value = 'Batman';
+
+    superheroInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    tick();
 
+    expect(component.name).toBe('BATMAN');
+  });
+
+  it('Debe llamar a Enviar el formulario es valido y enviado', () => {
+    spyOn(component, 'onSubmit');
+
+    const form = fixture.nativeElement.querySelector('form');
+    form.dispatchEvent(new Event('submit'));
+
+    expect(component.onSubmit).toHaveBeenCalled();
+  });
+
+  it('Debe no llamar a Enviar  cuando el formulario es invalido', () => {
+    const form = component.heroForm;
+    form.patchValue({ superhero: '', alter_ego: '', publisher: '' });
     component.onSubmit();
-    tick();
-
-    expect(component.heroForm.controls['id'].disabled).toBeTruthy();
-    expect(heroesServiceSpy.update).toHaveBeenCalledWith(hero);
-    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('heroes');
-    expect(notifierServiceSpy.openSuccess).toHaveBeenCalled();
-  }));
-
-  it('should call create when id is not provided and form is submitted', fakeAsync(() => {
-    const hero = {
-      id: '',
-      superhero: 'Superman',
-      alter_ego: 'Clark Kent',
-      publisher: Publisher.DCComics,
-      first_appearance: 'Action Comics #1',
-      characters: 'Superman',
-      description: 'The Man of Steel',
-    };
-    heroesServiceSpy.create.and.returnValue(of({}));
-
-    fixture.detectChanges();
-    tick();
-
-    component.onSubmit();
-    tick();
-
-    expect(heroesServiceSpy.create).toHaveBeenCalledWith(hero);
-    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('heroes');
-    expect(notifierServiceSpy.openSuccess).toHaveBeenCalled();
-  }));*/
-  
+    expect(heroesServiceSpy.create).not.toHaveBeenCalled();
+    expect(heroesServiceSpy.update).not.toHaveBeenCalled();
+  });
 });
