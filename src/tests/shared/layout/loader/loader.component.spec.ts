@@ -6,20 +6,27 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 
 import { LoaderComponent } from 'src/app/shared/layout/loader/loader.component';
 import { Predicate, DebugElement } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 describe('LoaderComponent', () => {
   let component: LoaderComponent;
   let fixture: ComponentFixture<LoaderComponent>;
 
-  let loadingService: LoadingService;
   let container: Predicate<DebugElement>;
-
+  let loadingServiceSpy: jasmine.SpyObj<LoadingService>;
   let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LoaderComponent],
-      providers: [LoadingService],
+      providers: [
+        {
+          provide: LoadingService,
+          useValue: {
+            showSpinner: new BehaviorSubject<boolean>(false),
+          },
+        },
+      ],
     }).compileComponents();
   });
 
@@ -27,7 +34,7 @@ describe('LoaderComponent', () => {
     fixture = TestBed.createComponent(LoaderComponent);
     component = fixture.componentInstance;
     compiled = fixture.debugElement.nativeElement;
-    loadingService = TestBed.inject(LoadingService);
+    loadingServiceSpy = TestBed.inject(LoadingService) as jasmine.SpyObj<LoadingService>;
 
     container = By.css('.loading-container');
     fixture.detectChanges();
@@ -41,7 +48,7 @@ describe('LoaderComponent', () => {
     const loadingContainer = fixture.debugElement.query(container);
     expect(loadingContainer).withContext('ShowSpinner = false; No debe aparecer').toBeNull();
 
-    loadingService.showSpinner.next(true);
+    loadingServiceSpy.showSpinner.next(true);
     fixture.detectChanges();
 
     const MatSpinner = compiled.querySelector('mat-spinner');
@@ -50,7 +57,7 @@ describe('LoaderComponent', () => {
     let updatedLoadingContainer = fixture.debugElement.query(container);
     expect(updatedLoadingContainer).withContext('ShowSpinner = true; Debe aparecer').not.toBeNull();
 
-    loadingService.showSpinner.next(false);
+    loadingServiceSpy.showSpinner.next(false);
     fixture.detectChanges();
 
     updatedLoadingContainer = fixture.debugElement.query(container);
