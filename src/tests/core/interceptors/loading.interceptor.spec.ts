@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  HTTP_INTERCEPTORS,
   HttpClient,
   HttpInterceptorFn,
 } from '@angular/common/http';
@@ -54,5 +53,13 @@ describe('LoadingInterceptor', () => {
     loadingService.handleRequest('show');
     expect(loadingService.isLoading()).toBeTrue();
 
+    //const req = httpMock.expectOne(`${url}/heroes`);
+
+    httpClient.get(`${url}/heroes`).subscribe(() => {
+      expect(loadingService.isLoading()).toBeFalse();
+    });
+
+    //req.flush({});
+    
   });
 });
