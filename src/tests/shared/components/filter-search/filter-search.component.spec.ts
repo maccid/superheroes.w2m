@@ -8,8 +8,6 @@ describe('FilterSearchComponent', () => {
   let component: FilterSearchComponent;
   let fixture: ComponentFixture<FilterSearchComponent>;
 
-  let compiled: HTMLElement;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, FilterSearchComponent],
@@ -19,7 +17,6 @@ describe('FilterSearchComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FilterSearchComponent);
     component = fixture.componentInstance;
-    compiled = fixture.debugElement.nativeElement;
 
     fixture.detectChanges();
   });
@@ -32,32 +29,23 @@ describe('FilterSearchComponent', () => {
     spyOn(component.filterText, 'emit');
 
     const searchText: string = 'test';
-    const input = compiled.querySelector('input');
+    const input = fixture.debugElement.nativeElement.querySelector('input');
 
-    if (input instanceof HTMLInputElement) {
-      input.value = searchText;
-      input.dispatchEvent(new Event('input'));
-      fixture.detectChanges();
+    input.value = searchText;
+    input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
 
-      expect(component.filterText.emit).toHaveBeenCalledWith(searchText);
-    } else {
-      expect(false).withContext('Debe ser tipo Input').toBeTruthy();
-    }
+    expect(component.filterText.emit).toHaveBeenCalledWith(searchText);
   });
 
   it('Debe borrar texto y emitir evento con texto vacio cuando pulsa botón borrar', () => {
     spyOn(component.filterText, 'emit');
 
-    const button = compiled.querySelector('button');
+    const button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    fixture.detectChanges();
 
-    if (button instanceof HTMLButtonElement) {
-      button.click();
-      fixture.detectChanges();
-
-      expect(component.filterValue).toEqual('');
-      expect(component.filterText.emit).toHaveBeenCalledWith('');
-    } else {
-      expect(false).withContext('Debe ser tipo Button').toBeTruthy();
-    }
+    expect(component.filterValue).toEqual('');
+    expect(component.filterText.emit).toHaveBeenCalledWith('');
   });
 });
