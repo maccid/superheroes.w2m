@@ -45,12 +45,8 @@ describe('IndexComponent', () => {
       ],
     }).compileComponents();
 
-    heroesServiceSpy = TestBed.inject(
-      HeroesService,
-    ) as jasmine.SpyObj<HeroesService>;
-    notifierServiceSpy = TestBed.inject(
-      NotifierService,
-    ) as jasmine.SpyObj<NotifierService>;
+    heroesServiceSpy = TestBed.inject(HeroesService) as jasmine.SpyObj<HeroesService>;
+    notifierServiceSpy = TestBed.inject(NotifierService) as jasmine.SpyObj<NotifierService>;
     dialogSpy = TestBed.inject(MatDialog) as jasmine.SpyObj<MatDialog>;
   });
 

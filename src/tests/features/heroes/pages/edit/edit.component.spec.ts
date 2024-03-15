@@ -8,12 +8,17 @@ import { HeroesService } from 'src/app/features/heroes/heroes.services';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
+import { Hero, Publisher } from 'src/app/features/heroes/heroes.interface';
+
 describe('EditComponent', () => {
   let component: EditComponent;
   let fixture: ComponentFixture<EditComponent>;
+  let compiled: HTMLElement;
 
   let heroesServiceSpy: jasmine.SpyObj<HeroesService>;
+  let notifierServiceSpy: jasmine.SpyObj<NotifierService>;
   let ActivatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
+  let routerSpy: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -70,6 +75,7 @@ describe('EditComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EditComponent);
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
 
     fixture.detectChanges();
   });
@@ -119,7 +125,83 @@ describe('EditComponent', () => {
     const form = component.heroForm;
     form.patchValue({ superhero: '', alter_ego: '', publisher: '' });
     component.onSubmit();
+
     expect(heroesServiceSpy.create).not.toHaveBeenCalled();
     expect(heroesServiceSpy.update).not.toHaveBeenCalled();
+  });
+
+  it('Debe crear heroe cuando formulario valido', () => {
+    const hero: Hero = {
+      id: 'dc-superman',
+      superhero: 'Superman',
+      alter_ego: 'Clark Kent',
+      publisher: Publisher.DCComics,
+      first_appearance: '',
+      characters: '',
+      description: '',
+    };
+
+    ActivatedRouteSpy.snapshot.paramMap.get = () => null;
+
+    fixture = TestBed.createComponent(EditComponent);
+    component = fixture.componentInstance;
+
+    heroesServiceSpy.create.and.returnValue(of(hero));
+
+    component.heroForm.controls['id'].setValue('dc-superman');
+    component.heroForm.controls['superhero'].setValue('Superman');
+    component.heroForm.controls['alter_ego'].setValue('Clark Kent');
+    component.heroForm.controls['publisher'].setValue('DC Comics');
+
+    component.onSubmit();
+
+    expect(heroesServiceSpy.create).toHaveBeenCalledWith(hero);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('heroes');
+    expect(notifierServiceSpy.openSuccess).toHaveBeenCalled();
+  });
+
+  it('Debe cargar los datos cuando esta editando', () => {
+    const hero: Hero = {
+      id: 'dc-superman',
+      superhero: 'SUPERMAN',
+      alter_ego: 'Clark Kent',
+      publisher: Publisher.DCComics,
+      first_appearance: 'Action Comics #1',
+      characters: 'Superman',
+      description: 'The Man of Steel',
+    };
+
+    heroesServiceSpy.get.and.returnValue(of(hero));
+
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.heroForm.getRawValue()).toEqual(hero);
+  });
+
+  it('Debe cagar heroe, modificar campo alter_ego y guarda correctamente', () => {
+    let hero: Hero = {
+      id: 'dc-superman',
+      superhero: 'SUPERMAN',
+      alter_ego: 'Clark Kent',
+      publisher: Publisher.DCComics,
+      first_appearance: 'Action Comics #1',
+      characters: 'Superman',
+      description: 'The Man of Steel',
+    };
+    heroesServiceSpy.get.and.returnValue(of(hero));
+    component.ngOnInit();
+
+    const newAlterEgo = 'Clark Kent (Fake)';
+    hero.alter_ego = newAlterEgo;
+    component.heroForm.controls['alter_ego'].setValue(newAlterEgo);
+
+    heroesServiceSpy.update.and.returnValue(of(hero));
+    component.onSubmit();
+
+    expect(component.heroForm.controls['id'].disabled).toBeTruthy();
+    expect(heroesServiceSpy.update).toHaveBeenCalledWith(hero);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('heroes');
+    expect(notifierServiceSpy.openSuccess).toHaveBeenCalled();
   });
 });
