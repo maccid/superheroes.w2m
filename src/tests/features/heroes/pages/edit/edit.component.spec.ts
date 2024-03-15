@@ -13,7 +13,6 @@ import { Hero, Publisher } from 'src/app/features/heroes/heroes.interface';
 describe('EditComponent', () => {
   let component: EditComponent;
   let fixture: ComponentFixture<EditComponent>;
-  let compiled: HTMLElement;
 
   let heroesServiceSpy: jasmine.SpyObj<HeroesService>;
   let notifierServiceSpy: jasmine.SpyObj<NotifierService>;
@@ -75,7 +74,6 @@ describe('EditComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EditComponent);
     component = fixture.componentInstance;
-    compiled = fixture.debugElement.nativeElement;
 
     fixture.detectChanges();
   });
@@ -180,7 +178,7 @@ describe('EditComponent', () => {
   });
 
   it('Debe cagar heroe, modificar campo alter_ego y guarda correctamente', () => {
-    let hero: Hero = {
+    const hero: Hero = {
       id: 'dc-superman',
       superhero: 'SUPERMAN',
       alter_ego: 'Clark Kent',

@@ -11,8 +11,6 @@ describe('DeleteDialogComponent', () => {
   let component: DeleteDialogComponent;
   let fixture: ComponentFixture<DeleteDialogComponent>;
 
-  let dialogRefSpy: jasmine.SpyObj<MatDialogRef<DeleteDialogComponent>>;
-
   const id: string = 'dc-batman';
 
   beforeEach(async () => {
@@ -28,8 +26,6 @@ describe('DeleteDialogComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DeleteDialogComponent);
     component = fixture.componentInstance;
-
-    dialogRefSpy = TestBed.inject(MatDialogRef) as jasmine.SpyObj<MatDialogRef<DeleteDialogComponent>>;
 
     fixture.detectChanges();
   });
