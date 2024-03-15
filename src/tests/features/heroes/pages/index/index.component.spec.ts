@@ -65,6 +65,7 @@ describe('IndexComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  //ToDo: Revisar
   it('Debe aplicar filtro de busqueda', () => {
     const heroes: Hero[] = [
       {

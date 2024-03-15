@@ -8,6 +8,8 @@ describe('NotifierService', () => {
   let service: NotifierService;
   let snackBar: MatSnackBar;
 
+  let openSpyStub: jasmine.Spy;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [NotifierService],
@@ -15,6 +17,7 @@ describe('NotifierService', () => {
 
     service = TestBed.inject(NotifierService);
     snackBar = TestBed.inject(MatSnackBar);
+    openSpyStub = spyOn(snackBar, 'open').and.stub();
   });
 
   it('Debe crear el servicio', () => {
@@ -22,8 +25,6 @@ describe('NotifierService', () => {
   });
 
   it('Debe mostrar notificación erronea y coincidir con la respuesta predefinida erronea', () => {
-    const openSpyStub = spyOn(snackBar, 'open').and.stub();
-
     const errorMessage = 'Error message';
     service.openError(errorMessage);
 
@@ -34,8 +35,6 @@ describe('NotifierService', () => {
   });
 
   it('Debe mostrar notificación exitosa y coincidir con la respuesta predefinida exitosa', () => {
-    const openSpyStub = spyOn(snackBar, 'open').and.stub();
-
     const successMessage = 'Success message';
     service.openSuccess(successMessage);
 

@@ -31,7 +31,7 @@ describe('HeroesService', () => {
   it('Debe crear el servicio', () => {
     expect(service).toBeTruthy();
   });
-
+  //ToDo: Revisar
   it('Debe mostrar listado de heroes', () => {
     const mockHeroes: Hero[] = [
       {

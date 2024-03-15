@@ -38,26 +38,22 @@ describe('LoaderComponent', () => {
   });
 
   it('Comprobar Spinner cuando showSpinner cambie de estado', () => {
-    //ShowSpinner = false; No debe aparecer
     const loadingContainer = fixture.debugElement.query(container);
-    expect(loadingContainer).toBeNull();
+    expect(loadingContainer).withContext('ShowSpinner = false; No debe aparecer').toBeNull();
 
     loadingService.showSpinner.next(true);
     fixture.detectChanges();
 
-    //Debe contener MatSpinner
     const MatSpinner = compiled.querySelector('mat-spinner');
-    expect(MatSpinner).toBeTruthy();
+    expect(MatSpinner).withContext('Debe contener MatSpinner').toBeTruthy();
 
-    //ShowSpinner = true; Debe aparecer
     let updatedLoadingContainer = fixture.debugElement.query(container);
-    expect(updatedLoadingContainer).not.toBeNull();
+    expect(updatedLoadingContainer).withContext('ShowSpinner = true; Debe aparecer').not.toBeNull();
 
     loadingService.showSpinner.next(false);
     fixture.detectChanges();
 
-    //ShowSpinner = false; No debe aparecer
     updatedLoadingContainer = fixture.debugElement.query(container);
-    expect(updatedLoadingContainer).toBeNull();
+    expect(updatedLoadingContainer).withContext('ShowSpinner = false; No debe aparecer').toBeNull();
   });
 });

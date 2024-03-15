@@ -58,7 +58,6 @@ describe('HeaderComponent', () => {
   });
 
   it('Debe crear el componente', () => {
-    //expect(component).toBeTruthy();
     expect(component).not.toBeNull();
   });
 
@@ -75,7 +74,6 @@ describe('HeaderComponent', () => {
     expect(heroesButton).toBeTruthy();
   });
 
-  //Debe ser async para que detecte el cambio de clase en el botón
   it('Debe haber solo un botón con la clase activo', fakeAsync(() => {
     expect(homeButton.nativeElement.classList.contains('active')).toBeFalsy();
     expect(heroesButton.nativeElement.classList.contains('active')).toBeFalsy();

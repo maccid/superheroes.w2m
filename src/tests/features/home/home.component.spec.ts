@@ -8,6 +8,8 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
+  let compiled: HTMLElement;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatExpansionModule, NoopAnimationsModule, HomeComponent],
@@ -17,11 +19,23 @@ describe('HomeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
 
     fixture.detectChanges();
   });
 
   it('Debe crear el componente', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Debe contener 2 secciones', () => {
+    const sections = compiled.querySelectorAll('section');
+    expect(sections.length).toEqual(2);
+  });
+
+  it('Debe contener 5 acordeones', () => {
+    expect(
+      compiled.querySelectorAll('mat-accordion mat-expansion-panel').length,
+    ).toBe(5);
   });
 });

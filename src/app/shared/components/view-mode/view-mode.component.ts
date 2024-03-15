@@ -28,7 +28,6 @@ export class ViewModeComponent implements OnInit {
   @Output() mode = new EventEmitter<string>();
 
   ngOnInit(): void {
-    console.log(this.options.mode )
     this.options.mode = localStorage.getItem(this.options.key) || 'table';
   }
 
