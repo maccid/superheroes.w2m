@@ -70,7 +70,7 @@ export class IndexGridComponent {
     const select = img[idx] as HTMLImageElement;
 
     if (select) {
-      select.src = 'assets/heroes/default.jpg';
+      select.src = 'assets/images/heroes/default.jpg';
     }
   }
 
