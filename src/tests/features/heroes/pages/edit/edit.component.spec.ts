@@ -4,11 +4,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { EditComponent } from 'src/app/features/heroes/pages/edit/edit.component';
-import { HeroesService } from 'src/app/features/heroes/heroes.services';
+import { HeroesService } from 'src/app/features/heroes/services/heroes.services';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { Hero, Publisher } from 'src/app/features/heroes/heroes.interface';
+import { Hero, Publisher } from 'src/app/features/heroes/models/heroes.interface';
 
 describe('EditComponent', () => {
   let component: EditComponent;

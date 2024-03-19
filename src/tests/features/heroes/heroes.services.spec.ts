@@ -6,8 +6,8 @@ import {
 
 import { environment } from '@env/environment';
 
-import { HeroesService } from 'src/app/features/heroes/heroes.services';
-import { Hero, Publisher } from 'src/app/features/heroes/heroes.interface';
+import { HeroesService } from 'src/app/features/heroes/services/heroes.services';
+import { Hero, Publisher } from 'src/app/features/heroes/models/heroes.interface';
 
 describe('HeroesService', () => {
   let service: HeroesService;

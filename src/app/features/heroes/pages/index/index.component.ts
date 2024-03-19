@@ -25,8 +25,8 @@ import { ViewModeComponent } from 'src/app/shared/components/view-mode/view-mode
 import { IndexGridComponent } from 'src/app/shared/components/index-grid/index-grid.component';
 import { IndexListComponent } from 'src/app/shared/components/index-list/index-list.component';
 
-import { HeroesService } from '../../heroes.services';
-import { Hero } from '../../heroes.interface';
+import { HeroesService } from '../../services/heroes.services';
+import { Hero } from '../../models/heroes.interface';
 
 @Component({
   standalone: true,
