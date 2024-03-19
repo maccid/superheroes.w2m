@@ -5,6 +5,7 @@ import { AppComponent } from 'src/app/app.component';
 import { HeaderComponent } from 'src/app/shared/layout/header/header.component';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { LoaderComponent } from 'src/app/shared/layout/loader/loader.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        TranslateModule.forRoot(),
         AppComponent,
         HeaderComponent,
         ToolbarComponent,
@@ -55,4 +57,5 @@ describe('AppComponent', () => {
     const routerOutlet = compiled.querySelector('router-outlet');
     expect(routerOutlet).toBeTruthy();
   });
+  //ToDo: Pruebas lenguaje
 });

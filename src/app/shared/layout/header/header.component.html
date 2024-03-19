@@ -3,18 +3,20 @@
     <div class="home-icon">
       <img
         src="./assets/images/world2meet.svg"
-        alt="Icono W2M"
+        alt="{{ 'header.icon' | translate }}"
         class="centered"
       />
     </div>
 
     <span class="spacer"></span>
-
-    <button mat-raised-button routerLink="/home" routerLinkActive="active">
-      Inicio
-    </button>
-    <button mat-raised-button routerLink="/heroes" routerLinkActive="active">
-      Heroes
-    </button>
+    <app-language-selector></app-language-selector>
+    <div>
+      <button mat-raised-button routerLink="/home" routerLinkActive="active">
+        <p>{{ "header.home" | translate }}</p>
+      </button>
+      <button mat-raised-button routerLink="/heroes" routerLinkActive="active">
+        <p>{{ "header.heroes" | translate }}</p>
+      </button>
+    </div>
   </mat-toolbar>
 </header>

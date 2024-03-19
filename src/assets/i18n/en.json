@@ -1,0 +1,14 @@
+{
+  
+  "language": {
+    "btn_es": "Spanish language",
+    "btn_en": "English language",
+    "flag_es": "Spanish flag",
+    "flag_en": "English flag"
+  },
+  "header": {
+    "icon": "W2M Icon",
+    "home": "Home",
+    "heroes": "Heroes"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "language": {
+    "btn_es": "Idioma español",
+    "btn_en": "Idioma inglés",
+    "flag_es": "Bandera española",
+    "flag_en": "Bandera inglesa"
+  },
+  "header": {
+    "icon": "Icono W2M",
+    "home": "Inicio",
+    "heroes": "Heroes"
+  }
+}

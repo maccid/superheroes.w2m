@@ -17,6 +17,7 @@ import { HeaderComponent } from 'src/app/shared/layout/header/header.component';
 import { HomeComponent } from 'src/app/features/home/home.component';
 import { IndexComponent } from 'src/app/features/heroes/pages/index/index.component';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -38,6 +39,7 @@ describe('HeaderComponent', () => {
           { path: 'home', component: HomeComponent },
           { path: 'heroes', component: IndexComponent },
         ]),
+        TranslateModule.forRoot(),
         HeaderComponent,
       ],
     }).compileComponents();
@@ -91,4 +93,6 @@ describe('HeaderComponent', () => {
       .withContext('Boton enlace heroe activo')
       .toBeTruthy();
   }));
+
+  //ToDo: Pruebas idiomas y app-selector-language
 });
