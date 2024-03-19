@@ -47,7 +47,6 @@ export class EditComponent implements OnInit {
   });
 
   publishers: Publisher[] = Object.values(Publisher);
-  name: string = '';
   submitted = false;
 
   constructor(
@@ -59,21 +58,23 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this._actroute.snapshot.paramMap.get('id') as string;
+    const superheroControl = this.heroForm.get('superhero');
 
     if (id != null && id != '') {
       this._heroesService.get(id).subscribe((item: Hero) => {
-        this.heroForm.controls['id'].disable();
-        this.heroForm.setValue(item);
-        this.name = item.superhero.toUpperCase();
+        this.heroForm.get('id')?.disable();
+        this.heroForm.setValue(item);       
       });
     }
+
+    superheroControl?.valueChanges.subscribe(() => {
+      superheroControl.patchValue(superheroControl.value.toUpperCase(), {
+        emitEvent: false,
+      });
+    });
   }
 
-  onSuperheroChange(newValue: string): void {
-    this.name = newValue.toUpperCase();
-  }
-
-  get f(): { [key: string]: AbstractControl } {
+  get getField(): { [key: string]: AbstractControl } {
     return this.heroForm.controls;
   }
 

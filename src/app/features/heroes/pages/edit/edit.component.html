@@ -12,13 +12,11 @@
           matInput
           type="text"
           formControlName="superhero"
-          [(ngModel)]="name"
-          (ngModelChange)="onSuperheroChange($event)"
         />
         @if (
           submitted &&
-          f["superhero"].errors &&
-          f["superhero"].errors["required"]
+          getField["superhero"].errors &&
+          getField["superhero"].errors["required"]
         ) {
           <mat-error>Nomnbre requerido</mat-error>
         }
@@ -29,8 +27,8 @@
         <input matInput type="text" formControlName="alter_ego" />
         @if (
           submitted &&
-          f["alter_ego"].errors &&
-          f["alter_ego"].errors["required"]
+          getField["alter_ego"].errors &&
+          getField["alter_ego"].errors["required"]
         ) {
           <mat-error>Editorial requerido</mat-error>
         }

@@ -107,7 +107,7 @@ describe('EditComponent', () => {
     superheroInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(component.name).toBe('BATMAN');
+    expect(component.getField['superhero'].value).toBe('BATMAN');
   });
 
   it('Debe llamar a Enviar el formulario es valido y enviado', () => {
@@ -146,10 +146,10 @@ describe('EditComponent', () => {
 
     heroesServiceSpy.create.and.returnValue(of(hero));
 
-    component.heroForm.controls['id'].setValue('dc-superman');
-    component.heroForm.controls['superhero'].setValue('Superman');
-    component.heroForm.controls['alter_ego'].setValue('Clark Kent');
-    component.heroForm.controls['publisher'].setValue('DC Comics');
+    component.getField['id'].setValue('dc-superman');
+    component.getField['superhero'].setValue('Superman');
+    component.getField['alter_ego'].setValue('Clark Kent');
+    component.getField['publisher'].setValue('DC Comics');
 
     component.onSubmit();
 
@@ -192,12 +192,12 @@ describe('EditComponent', () => {
 
     const newAlterEgo = 'Clark Kent (Fake)';
     hero.alter_ego = newAlterEgo;
-    component.heroForm.controls['alter_ego'].setValue(newAlterEgo);
+    component.heroForm.get('alter_ego')?.setValue(newAlterEgo);
 
     heroesServiceSpy.update.and.returnValue(of(hero));
     component.onSubmit();
 
-    expect(component.heroForm.controls['id'].disabled).toBeTruthy();
+    expect(component.heroForm.get('id')?.disabled).toBeTruthy();
     expect(heroesServiceSpy.update).toHaveBeenCalledWith(hero);
     expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('heroes');
     expect(notifierServiceSpy.openSuccess).toHaveBeenCalled();
