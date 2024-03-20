@@ -1,8 +1,8 @@
 <div mat-dialog-content>
-  <p>¿Deseas eliminar el elemento {{ id }}?</p>
+  <p>{{ 'dialog.delete.text' | translate:{ id } }}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="false">Cancelar</button>
+  <button mat-button [mat-dialog-close]="false">{{ 'dialog.actions.cancel' | translate}}</button>
   <span class="spacer"></span>
-  <button mat-button color="warn" [mat-dialog-close]="true">Eliminar</button>
+  <button mat-button color="warn" [mat-dialog-close]="true">{{ 'dialog.actions.delete' | translate}}</button>
 </div>

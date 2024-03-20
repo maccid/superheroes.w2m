@@ -103,7 +103,7 @@ describe('IndexComponent', () => {
     component.openDeleteDialog(id);
 
     expect(dialogSpy.open).toHaveBeenCalledOnceWith(jasmine.any(Function), {
-      width: '400px',
+      width: '500px',
       data: id,
     });
 

@@ -5,13 +5,13 @@ export const routes: Routes = [
     path: 'home',
     loadComponent: () =>
       import('./features/home/home.component').then((m) => m.HomeComponent),
-    data: { breadcrumb: 'Inicio' },
+    data: { breadcrumb: 'breadcrumb.home' },
   },
   {
     path: 'heroes',
     loadChildren: () =>
       import('./features/heroes/heroes.routes').then((m) => m.routes),
-    data: { breadcrumb: 'Heroes' },
+    data: { breadcrumb: 'breadcrumb.hero.text' },
   },
   {
     path: '**',

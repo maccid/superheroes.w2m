@@ -7,6 +7,8 @@ import {
 } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { MatButtonModule } from '@angular/material/button';
 
 import { filter, map } from 'rxjs/operators';
@@ -16,7 +18,7 @@ import { Breadcrumb } from 'src/app/core/interfaces/breadcrumb.interface';
 @Component({
   selector: 'app-breadcrumb',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatButtonModule],
+  imports: [CommonModule, RouterLink, MatButtonModule, TranslateModule],
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.scss'],
 })
@@ -55,9 +57,8 @@ export class BreadcrumbComponent implements OnInit {
 
       const id = child.snapshot.paramMap.get('id');
 
-      if (id) label += `: ${id}`;
-
-      if (label !== '') breadcrumbs.push({ label, url });
+      if (id != null && id != '' && label !== '') breadcrumbs.push({ label, url, id });
+      else if (label !== '') breadcrumbs.push({ label, url });
 
       return this.buildBreadcrumbs(child, url, breadcrumbs);
     }

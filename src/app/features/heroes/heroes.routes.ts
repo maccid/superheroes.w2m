@@ -15,13 +15,13 @@ export const routes: Routes = [
         path: 'add',
         loadComponent: () =>
           import('./pages/edit/edit.component').then((m) => m.EditComponent),
-        data: { breadcrumb: 'Añadir Heroe' },
+        data: { breadcrumb: 'breadcrumb.hero.add' },
       },
       {
         path: 'edit/:id',
         loadComponent: () =>
           import('./pages/edit/edit.component').then((m) => m.EditComponent),
-        data: { breadcrumb: 'Editar Heroe' },
+        data: { breadcrumb: 'breadcrumb.hero.edit' },
       },
     ],
   },

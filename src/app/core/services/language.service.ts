@@ -4,18 +4,18 @@ import { TranslateService } from '@ngx-translate/core';
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
   private readonly _langKey = 'i18n.lang';
-  private readonly _translateService: TranslateService = inject(TranslateService);
+  private readonly _translate: TranslateService = inject(TranslateService);
 
   getLangs(): string[] {
-    return this._translateService.getLangs();
+    return this._translate.getLangs();
   }
 
   getLang(): string {
-    return this._translateService.currentLang;
+    return this._translate.currentLang;
   }
 
   setLangs(): void {
-    this._translateService.addLangs(['es', 'en']);
+    this._translate.addLangs(['es', 'en']);
   }
 
   setLang(): void {
@@ -31,7 +31,7 @@ export class LanguageService {
 
   changeLang(lang: string): void {
     if (lang === this.getLang()) return;
-    this._translateService.use(lang);
+    this._translate.use(lang);
     localStorage.setItem(this._langKey, lang);
   }
 }

@@ -2,6 +2,8 @@ import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatCardModule,
     MatTooltipModule,
+    TranslateModule,
   ],
   templateUrl: './filter-search.component.html',
   styleUrls: ['filter-search.component.scss'],
@@ -33,7 +36,6 @@ export class FilterSearchComponent implements OnInit {
   }
 
   onSearchTextChange(event: Event): void {
-
     const filterValue = (event.target as HTMLInputElement).value;
     this.filterText.emit(filterValue);
     localStorage.setItem(this.filterKey, filterValue);

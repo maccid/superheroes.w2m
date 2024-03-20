@@ -1,4 +1,5 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ViewModeComponent } from 'src/app/shared/components/view-mode/view-mode.component';
 
@@ -9,7 +10,7 @@ describe('ViewModeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewModeComponent],
+      imports: [ViewModeComponent, TranslateModule.forRoot()],
     }).compileComponents();
   });
 

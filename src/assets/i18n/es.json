@@ -1,13 +1,56 @@
 {
   "language": {
-    "btn_es": "Idioma español",
-    "btn_en": "Idioma inglés",
-    "flag_es": "Bandera española",
-    "flag_en": "Bandera inglesa"
+    "btn": {
+      "es": "Idioma español",
+      "en": "Idioma inglés"
+    },
+    "flag": {
+      "es": "Bandera española",
+      "en": "Bandera inglesa"
+    }
+  },
+  "notify": {
+    "close": "Cerrar",
+    "error": "Ha ocurrido un error en la solicitud.",
+    "hero": {
+      "add": "El héroe {{id}} ha sido creado correctamente.",
+      "edit": "El héroe {{id}} ha sido editado correctamente.",
+      "delete": "El héroe {{id}} ha sido borrado correctamente."
+    }
+  },
+  "breadcrumb": {
+    "home": "Inicio",
+    "hero": {
+      "text": "Héroes",
+      "add": "Añadir héroe",
+      "edit": "Editar héroe"
+    }
+  },
+  "dialog": {
+    "delete": {
+      "text": "¿Deseas eliminar el elemento {{ id }}?"
+    },
+    "actions": {
+      "cancel": "Cancelar",
+      "delete": "Eliminar"
+    }
+  },
+  "filter": {
+    "text": "Buscar...",
+    "clear": "Limpiar"
+  },
+  "view": {
+    "grid": "Vista rejilla",
+    "table": "Vista tabla"
   },
   "header": {
     "icon": "Icono W2M",
     "home": "Inicio",
-    "heroes": "Heroes"
+    "heroes": "Héroes"
+  },
+  "features": {
+    "heroes": {
+      "add": "Añadir Héroe"
+    }
   }
 }

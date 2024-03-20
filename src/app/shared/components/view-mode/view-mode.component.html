@@ -1,7 +1,7 @@
 <div>
   <button
     mat-icon-button
-    matTooltip="Vista Grid"
+    [matTooltip]="'view.grid' | translate"
     (click)="onViewChange('grid')"
     [disabled]="options.mode !== 'table'"
   >
@@ -9,7 +9,7 @@
   </button>
   <button
     mat-icon-button
-    matTooltip="Vista Tabla"
+    [matTooltip]="'view.table' | translate"
     (click)="onViewChange('table')"
     [disabled]="options.mode !== 'grid'"
   >

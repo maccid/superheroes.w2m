@@ -4,6 +4,7 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { DeleteDialogComponent } from 'src/app/shared/components/delete-dialog/delete-dialog.component';
 
@@ -15,7 +16,11 @@ describe('DeleteDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteDialogComponent, MatDialogModule],
+      imports: [
+        DeleteDialogComponent,
+        MatDialogModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: id },

@@ -3,9 +3,11 @@
     @for (crumb of breadcrumbs; track crumb.label; let last = $last) {
       <li class="breadcrumb-item" [ngClass]="{ active: last }">
         @if (!last) {
-          <a mat-button [routerLink]="crumb.url">{{ crumb.label }}</a>
+          <a mat-button [routerLink]="crumb.url">{{ crumb.label | translate }}</a>
+        } @else if(crumb.id) {
+          <a mat-button [disabled]="true">{{ crumb.label | translate }}: {{ crumb.id }}</a>
         } @else {
-          <a mat-button [disabled]="true">{{ crumb.label }}</a>
+          <a mat-button [disabled]="true">{{ crumb.label | translate }}</a>
         }
       </li>
     }

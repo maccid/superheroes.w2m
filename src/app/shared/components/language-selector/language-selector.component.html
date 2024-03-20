@@ -3,11 +3,11 @@
     <button
       mat-icon-button
       (click)="setLanguage(lang)"
-      [matTooltip]="'language.btn_' + lang | translate"
+      [matTooltip]="'language.btn.' + lang | translate"
     >
       <img
         src="./assets/images/{{ lang }}.svg"
-        [alt]="'language.flag_' + lang | translate"
+        [alt]="'language.flag.' + lang | translate"
         class="centered"
       />
     </button>

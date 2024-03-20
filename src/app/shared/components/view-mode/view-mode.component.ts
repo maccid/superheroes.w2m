@@ -2,11 +2,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { View } from 'src/app/core/interfaces/view.interface';
 
 @Component({
@@ -19,6 +22,7 @@ import { View } from 'src/app/core/interfaces/view.interface';
     MatButtonModule,
     MatCardModule,
     MatTooltipModule,
+    TranslateModule,
   ],
   templateUrl: './view-mode.component.html',
   styleUrls: ['view-mode.component.scss'],

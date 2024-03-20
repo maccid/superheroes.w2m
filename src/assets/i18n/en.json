@@ -1,14 +1,56 @@
 {
-  
   "language": {
-    "btn_es": "Spanish language",
-    "btn_en": "English language",
-    "flag_es": "Spanish flag",
-    "flag_en": "English flag"
+    "btn": {
+      "es": "Spanish language",
+      "en": "English language"
+    },
+    "flag": {
+      "es": "Spanish flag",
+      "en": "English flag"
+    }
+  },
+  "notify": {
+    "close": "Close",
+    "error": "An error occurred in the request.",
+    "hero": {
+      "add": "The hero {{id}} has been successfully created.",
+      "edit": "The hero {{id}} has been successfully edited.",
+      "delete": "The hero {{id}} has been successfully eliminated."
+    }
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "hero": {
+      "text": "Heroes",
+      "add": "Add hero",
+      "edit": "Edit hero"
+    }
+  },
+  "dialog": {
+    "delete": {
+      "text": "Do you want to delete the {{id}} element?"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "delete": "Delete"
+    }
+  },
+  "filter": {
+    "text": "Search...",
+    "clear": "Clear"
+  },
+  "view": {
+    "grid": "Grid view",
+    "table": "Table view"
   },
   "header": {
     "icon": "W2M Icon",
     "home": "Home",
     "heroes": "Heroes"
+  },
+  "features": {
+    "heroes": {
+      "add": "Add Hero"
+    }
   }
 }

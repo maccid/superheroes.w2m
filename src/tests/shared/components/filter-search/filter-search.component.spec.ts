@@ -1,6 +1,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { FilterSearchComponent } from 'src/app/shared/components/filter-search/filter-search.component';
 
@@ -10,7 +11,11 @@ describe('FilterSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, FilterSearchComponent],
+      imports: [
+        NoopAnimationsModule,
+        FilterSearchComponent,
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents();
   });
 

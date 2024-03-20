@@ -4,6 +4,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AddButtonComponent } from 'src/app/shared/components/add-button/add-button.component';
 
@@ -15,7 +16,11 @@ describe('AddButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, AddButtonComponent],
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot(),
+        AddButtonComponent,
+      ],
     }).compileComponents();
   });
 
