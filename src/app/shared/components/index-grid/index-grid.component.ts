@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +30,7 @@ import { GridService } from 'src/app/core/services/grid.service';
     MatIconModule,
     MatTooltipModule,
     MatCardModule,
+    TranslateModule,
   ],
   templateUrl: './index-grid.component.html',
   styleUrl: './index-grid.component.css',
@@ -36,6 +39,7 @@ export class IndexGridComponent {
   @Input({ required: true }) fields: Fields[] = [];
   @Input({ required: false }) actions: Actions[] = [];
   @Input({ required: true }) dataSource: any[] = [];
+  @Input({ required: true }) imageRoute: string = '';
 
   @Output() actionEvent: EventEmitter<{ action: string; id: string }> =
     new EventEmitter<{ action: string; id: string }>();
@@ -69,7 +73,7 @@ export class IndexGridComponent {
     const select = img[idx] as HTMLImageElement;
 
     if (select) {
-      select.src = 'assets/images/heroes/default.jpg';
+      select.src = `assets/images/${this.imageRoute}/default.jpg`;
     }
   }
 }

@@ -77,4 +77,9 @@ mat-card {
   mat-card-actions {
     justify-content: flex-end
   }
+
+  &.filter-empty {
+    margin: 15px;
+    text-align: center;
+  }
 }

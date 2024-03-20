@@ -37,7 +37,8 @@
   },
   "filter": {
     "text": "Buscar...",
-    "clear": "Limpiar"
+    "clear": "Limpiar",
+    "empty": "No hay datos que coincidan con el filtro."
   },
   "view": {
     "grid": "Vista rejilla",
@@ -50,7 +51,26 @@
   },
   "features": {
     "heroes": {
+      "fields": {
+        "id": "Identificador",
+        "name": "Héroe",
+        "alter_ego": "Alter ego",
+        "publisher": "Editorial",
+        "first_appearance": "Estreno",
+        "characters": "Personajes",
+        "description": "Descripción"
+      },
       "add": "Añadir Héroe"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "submit": "Enviar"
+    },
+    "errors": {
+      "required": "Campo requerido.",
+      "min": "El campo debe tener mínimo '{{min}}' carácteres.",
+      "size": "El campo debe tener entre '{{min}}' y '{{max}}' carácteres"
     }
   }
 }

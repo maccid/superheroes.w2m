@@ -1,7 +1,16 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
 
 import { Subscription, fromEvent } from 'rxjs';
+
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +24,14 @@ import { DataSource } from 'src/app/core/interfaces/data-source.interface';
 @Component({
   selector: 'app-index-list',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatIconModule, MatTooltipModule, TitleCasePipe],
+  imports: [
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    TranslateModule,
+    TitleCasePipe,
+  ],
   templateUrl: './index-list.component.html',
   styleUrl: './index-list.component.css',
 })

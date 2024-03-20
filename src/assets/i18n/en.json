@@ -37,7 +37,8 @@
   },
   "filter": {
     "text": "Search...",
-    "clear": "Clear"
+    "clear": "Clear",
+    "empty": "No data matches the filter."
   },
   "view": {
     "grid": "Grid view",
@@ -50,7 +51,26 @@
   },
   "features": {
     "heroes": {
+      "fields": {
+        "id": "ID",
+        "name": "Hero",
+        "alter_ego": "Alter ego",
+        "publisher": "Publisher",
+        "first_appearance": "Premiere",
+        "characters": "Characters",
+        "description": "Description"
+      },
       "add": "Add Hero"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "submit": "Submit"
+    },
+    "errors": {
+      "required": "Field required.",
+      "min": "The field must have at least '{{min}}' characters.",
+      "size": "The field must have between '{{min}}' and '{{max}}' characters."
     }
   }
 }

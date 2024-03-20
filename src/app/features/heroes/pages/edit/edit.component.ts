@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +31,7 @@ import { NotifierService } from 'src/app/core/services/notifier.service';
     MatInputModule,
     MatCardModule,
     MatSelectModule,
+    TranslateModule,
     CommonModule,
     RouterLink,
   ],
@@ -40,11 +43,21 @@ export class EditComponent implements OnInit {
   private readonly _route: Router = inject(Router);
   private readonly _heroesService: HeroesService = inject(HeroesService);
   private readonly _notifierService: NotifierService = inject(NotifierService);
+  private readonly _translate: TranslateService = inject(TranslateService);
 
   readonly heroForm: FormGroup = new FormGroup({
-    id: new FormControl<string>('', Validators.required),
-    superhero: new FormControl<string>('', Validators.required),
-    alter_ego: new FormControl<string>('', Validators.required),
+    id: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    superhero: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    alter_ego: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
     publisher: new FormControl<string>('', Validators.required),
     first_appearance: new FormControl<string>(''),
     characters: new FormControl<string>(''),
@@ -52,7 +65,6 @@ export class EditComponent implements OnInit {
   });
 
   readonly publishers: Publisher[] = Object.values(Publisher);
-  submitted = false;
 
   ngOnInit(): void {
     const id = this._activatedRoute.snapshot.paramMap.get('id') as string;
@@ -77,11 +89,7 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.submitted = true;
-
-    if (this.heroForm.invalid) {
-      return;
-    }
+    if (this.heroForm.invalid) return;
 
     const id = this._activatedRoute.snapshot.paramMap.get('id') as string;
 
@@ -91,9 +99,11 @@ export class EditComponent implements OnInit {
         : this._heroesService.create(this.heroForm.getRawValue());
 
     http.subscribe(() => {
-      const type = id != null && id != '' ? 'editado' : 'creado';
+      const type = id != null && id != '' ? 'add' : 'edit';
 
-      const message = `El heroe ${this.heroForm.value.id} ha sido ${type} correctamente`;
+      const message = this._translate.instant('notify.hero.' + type, {
+        id: this.heroForm.get('id')?.value,
+      });
 
       this._notifierService.openSuccess(message);
 

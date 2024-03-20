@@ -1,4 +1,4 @@
-<app-add-button [routerLink]="route" [tooltipText]="tooltipAdd" />
+<app-add-button [routerLink]="routeAdd" [tooltipText]="tooltipAdd" />
 
 <div class="options">
   <app-filter
@@ -26,6 +26,7 @@
     <app-index-grid
       [fields]="fields"
       [actions]="actions"
+      [imageRoute]="imageRoute"
       [dataSource]="dataSource()"
       (actionEvent)="actionEvent($event)"
     ></app-index-grid>

@@ -1,5 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { IndexGridComponent } from 'src/app/shared/components/index-grid/index-grid.component';
 
@@ -9,7 +10,7 @@ describe('IndexGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IndexGridComponent],
+      imports: [IndexGridComponent, TranslateModule.forRoot()],
     }).compileComponents();
   });
 

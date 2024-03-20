@@ -1,5 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { IndexListComponent } from 'src/app/shared/components/index-list/index-list.component';
 
@@ -9,7 +10,7 @@ describe('IndexListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IndexListComponent],
+      imports: [IndexListComponent, TranslateModule.forRoot()],
     }).compileComponents();
   });
 

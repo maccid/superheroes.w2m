@@ -8,6 +8,8 @@ import {
 
 import { Router } from '@angular/router';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 
@@ -46,10 +48,13 @@ export class IndexComponent implements OnInit {
   private readonly _route: Router = inject(Router);
   private readonly _heroesService: HeroesService = inject(HeroesService);
   private readonly _notifierService: NotifierService = inject(NotifierService);
+  private readonly _translate: TranslateService = inject(TranslateService);
+
   private _unsubscribe$ = new Subject<void>();
 
-  readonly route: string = '/heroes/add';
-  readonly tooltipAdd: string = 'Añadir Heroe';
+  readonly imageRoute: string = 'heroes';
+  readonly routeAdd: string = '/heroes/add';
+  readonly tooltipAdd: string = 'features.heroes.add';
   readonly filterKey: string = 'heroes.search';
 
   readonly view: View = {
@@ -58,15 +63,30 @@ export class IndexComponent implements OnInit {
   };
 
   readonly fields: Fields[] = [
-    { name: 'superhero', label: 'Heroe', flex: 2, titlecase: true },
-    { name: 'alter_ego', label: 'Personaje', flex: 2 },
-    { name: 'publisher', label: 'Editorial', flex: 2, hide: ['sm'] },
-    { name: 'first_appearance', label: 'Estreno', flex: 2, hide: ['sm', 'md'] },
+    {
+      name: 'superhero',
+      label: 'features.heroes.fields.name',
+      flex: 2,
+      titlecase: true,
+    },
+    { name: 'alter_ego', label: 'features.heroes.fields.alter_ego', flex: 2 },
+    {
+      name: 'publisher',
+      label: 'features.heroes.fields.publisher',
+      flex: 2,
+      hide: ['sm'],
+    },
+    {
+      name: 'first_appearance',
+      label: 'features.heroes.fields.first_appearance',
+      flex: 2,
+      hide: ['sm', 'md'],
+    },
   ];
 
   readonly actions: Actions[] = [
-    { name: 'edit', label: 'Editar' },
-    { name: 'delete', label: 'Eliminar' },
+    { name: 'edit', label: 'features.actions.edit' },
+    { name: 'delete', label: 'features.actions.delete' },
   ];
 
   readonly dataSource: WritableSignal<Hero[]> = signal([]);
@@ -111,14 +131,14 @@ export class IndexComponent implements OnInit {
 
   openDeleteDialog(id: string): void {
     const dialogRef = this._dialog.open(DeleteDialogComponent, {
-      width: '400px',
+      width: '500px',
       data: id,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this._heroesService.delete(id).subscribe(() => {
-          const message = `El heroe ${id} ha sido borrado correctamente`;
+          const message = this._translate.instant('notify.hero.delete', { id });
 
           this._notifierService.openSuccess(message);
 

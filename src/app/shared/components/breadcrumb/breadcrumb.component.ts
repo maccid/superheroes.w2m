@@ -53,8 +53,7 @@ export class BreadcrumbComponent implements OnInit {
 
       if (routeURL !== '') url += `/${routeURL}`;
 
-      let label = child.snapshot.data['breadcrumb'] ?? '';
-
+      const label = child.snapshot.data['breadcrumb'] ?? '';
       const id = child.snapshot.paramMap.get('id');
 
       if (id != null && id != '' && label !== '') breadcrumbs.push({ label, url, id });

@@ -1,46 +1,52 @@
-<mat-grid-list [cols]="getGridColumns()" [rowHeight]="getSizeHeight()">
-  @for (element of dataSource; track element; let idx = $index) {
-    <mat-grid-tile>
-      <mat-card
-        [ngClass]="{ vertical: isVertical(), horizontal: !isVertical() }"
-      >
-        <img
-          mat-card-xl-image
-          src="assets/images/heroes/{{ element.id }}.jpg"
-          alt="Heroe"
-          (error)="getDefaultImage(idx)"
-        />
+@if (dataSource && dataSource.length > 0) {
+  <mat-grid-list [cols]="getGridColumns()" [rowHeight]="getSizeHeight()">
+    @for (element of dataSource; track element; let idx = $index) {
+      <mat-grid-tile>
+        <mat-card
+          [ngClass]="{ vertical: isVertical(), horizontal: !isVertical() }"
+        >
+          <img
+            mat-card-xl-image
+            src="assets/images/{{ imageRoute }}/{{ element.id }}.jpg"
+            alt="{{ element.id }}"
+            (error)="getDefaultImage(idx)"
+          />
 
-        <div>
-          @for (field of fields; track field) {
-            @if (field.titlecase) {
-              <mat-card-title>
-                {{ element[field.name] | titlecase }}
-              </mat-card-title>
-            } @else {
-              <mat-card-content>
-                <p>
-                  <b>{{ field.label }}: </b>
-                  <span>
-                    {{ element[field.name] }}
-                  </span>
-                </p>
-              </mat-card-content>
+          <div>
+            @for (field of fields; track field) {
+              @if (field.titlecase) {
+                <mat-card-title>
+                  {{ element[field.name] | titlecase }}
+                </mat-card-title>
+              } @else {
+                <mat-card-content>
+                  <p>
+                    <b>{{ field.label | translate }}: </b>
+                    <span>
+                      {{ element[field.name] }}
+                    </span>
+                  </p>
+                </mat-card-content>
+              }
             }
-          }
-          <mat-card-actions>
-            @for (action of actions; track action) {
-              <button
-                mat-icon-button
-                (click)="onClickElement(action.name, element.id)"
-                [matTooltip]="action.label"
-              >
-                <mat-icon>{{ action.name }}</mat-icon>
-              </button>
-            }
-          </mat-card-actions>
-        </div>
-      </mat-card>
-    </mat-grid-tile>
-  }
-</mat-grid-list>
+            <mat-card-actions>
+              @for (action of actions; track action) {
+                <button
+                  mat-icon-button
+                  (click)="onClickElement(action.name, element.id)"
+                  [matTooltip]="action.label | translate"
+                >
+                  <mat-icon>{{ action.name }}</mat-icon>
+                </button>
+              }
+            </mat-card-actions>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+} @else {
+  <mat-card class="filter-empty">
+    <p>{{ "filter.empty" | translate }}</p>
+  </mat-card>
+}

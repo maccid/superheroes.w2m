@@ -149,11 +149,7 @@ describe('EditComponent', () => {
 
     heroesServiceSpy.create.and.returnValue(of(hero));
 
-    component.getField['id'].setValue('dc-superman');
-    component.getField['superhero'].setValue('Superman');
-    component.getField['alter_ego'].setValue('Clark Kent');
-    component.getField['publisher'].setValue('DC Comics');
-
+    component.heroForm.setValue(hero);
     component.onSubmit();
 
     expect(heroesServiceSpy.create).toHaveBeenCalledWith(hero);
