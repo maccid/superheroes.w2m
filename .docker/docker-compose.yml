@@ -3,6 +3,6 @@ services:
   json-server:
     image: clue/json-server
     ports:
-      - "80:80"
+      - "8081:80"
     volumes:
       - ./json-server/db.json:/data/db.json
