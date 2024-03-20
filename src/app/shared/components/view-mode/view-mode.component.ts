@@ -24,7 +24,7 @@ import { View } from 'src/app/core/interfaces/view.interface';
   styleUrls: ['view-mode.component.scss'],
 })
 export class ViewModeComponent implements OnInit {
-  @Input() options: View = {} as View;
+  @Input({ required: true }) options: View = {} as View;
   @Output() mode = new EventEmitter<string>();
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
@@ -36,7 +36,12 @@ import { NotifierService } from 'src/app/core/services/notifier.service';
   styleUrls: ['edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-  heroForm: FormGroup = new FormGroup({
+  private readonly _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  private readonly _route: Router = inject(Router);
+  private readonly _heroesService: HeroesService = inject(HeroesService);
+  private readonly _notifierService: NotifierService = inject(NotifierService);
+
+  readonly heroForm: FormGroup = new FormGroup({
     id: new FormControl<string>('', Validators.required),
     superhero: new FormControl<string>('', Validators.required),
     alter_ego: new FormControl<string>('', Validators.required),
@@ -46,24 +51,17 @@ export class EditComponent implements OnInit {
     description: new FormControl<string>(''),
   });
 
-  publishers: Publisher[] = Object.values(Publisher);
+  readonly publishers: Publisher[] = Object.values(Publisher);
   submitted = false;
 
-  constructor(
-    private _actroute: ActivatedRoute,
-    private _route: Router,
-    private _heroesService: HeroesService,
-    private _notifierService: NotifierService,
-  ) {}
-
   ngOnInit(): void {
-    const id = this._actroute.snapshot.paramMap.get('id') as string;
+    const id = this._activatedRoute.snapshot.paramMap.get('id') as string;
     const superheroControl = this.heroForm.get('superhero');
 
     if (id != null && id != '') {
       this._heroesService.get(id).subscribe((item: Hero) => {
         this.heroForm.get('id')?.disable();
-        this.heroForm.setValue(item);       
+        this.heroForm.setValue(item);
       });
     }
 
@@ -85,7 +83,7 @@ export class EditComponent implements OnInit {
       return;
     }
 
-    const id = this._actroute.snapshot.paramMap.get('id') as string;
+    const id = this._activatedRoute.snapshot.paramMap.get('id') as string;
 
     const http =
       id != null && id != ''

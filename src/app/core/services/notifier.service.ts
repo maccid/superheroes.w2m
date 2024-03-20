@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -6,17 +6,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class NotifierService {
-  constructor(private snackBar: MatSnackBar) {}
+  private readonly _snackBar: MatSnackBar = inject(MatSnackBar);
 
   public openError(message: string): void {
-    this.snackBar.open(message, 'Cerrar', {
+    this._snackBar.open(message, 'Cerrar', {
       duration: 2000,
       panelClass: ['error-snackbar'],
     });
   }
 
   public openSuccess(message: string): void {
-    this.snackBar.open(message, 'Cerrar', {
+    this._snackBar.open(message, 'Cerrar', {
       duration: 2000,
       panelClass: ['success-snackbar'],
     });

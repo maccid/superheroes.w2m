@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoadingService {
   private _numberOfRequests: number = 0;
-  public showSpinner: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public readonly showSpinner: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   isLoading = (): boolean => {
     return this._numberOfRequests > 0;

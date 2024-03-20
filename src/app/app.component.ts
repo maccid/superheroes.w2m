@@ -23,7 +23,7 @@ import { LanguageService } from './core/services/language.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  private readonly _translateService = inject(LanguageService);
+  private readonly _translateService: LanguageService = inject(LanguageService);
 
   ngOnInit(): void {
     this._translateService.setLangs();

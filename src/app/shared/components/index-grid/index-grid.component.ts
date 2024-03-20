@@ -4,6 +4,7 @@ import {
   HostListener,
   Input,
   Output,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -39,9 +40,7 @@ export class IndexGridComponent {
   @Output() actionEvent: EventEmitter<{ action: string; id: string }> =
     new EventEmitter<{ action: string; id: string }>();
 
-  displayedColumns: string[] = [];
-
-  constructor(private _gridService: GridService) {}
+  private readonly _gridService: GridService = inject(GridService);
 
   onClickElement(action: string, id: string): void {
     this.actionEvent.emit({ action, id });
@@ -73,5 +72,4 @@ export class IndexGridComponent {
       select.src = 'assets/images/heroes/default.jpg';
     }
   }
-
 }

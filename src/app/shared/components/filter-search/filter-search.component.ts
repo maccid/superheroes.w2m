@@ -23,7 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrls: ['filter-search.component.scss'],
 })
 export class FilterSearchComponent implements OnInit {
-  @Input() filterKey: string = '';
+  @Input({ required: true }) filterKey: string = '';
   @Output() filterText = new EventEmitter<string>();
 
   filterValue: string = '';

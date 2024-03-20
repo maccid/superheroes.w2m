@@ -1,9 +1,9 @@
 import {
   Component,
   OnInit,
-  Input,
   WritableSignal,
   signal,
+  inject,
 } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -42,39 +42,34 @@ import { Hero } from '../../models/heroes.interface';
   styleUrls: ['index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-  @Input() searchFilter: string = '';
+  private readonly _dialog: MatDialog = inject(MatDialog);
+  private readonly _route: Router = inject(Router);
+  private readonly _heroesService: HeroesService = inject(HeroesService);
+  private readonly _notifierService: NotifierService = inject(NotifierService);
+  private _unsubscribe$ = new Subject<void>();
 
-  route: string = '/heroes/add';
-  tooltipAdd: string = 'Añadir Heroe';
-  filterKey: string = 'heroes.search';
+  readonly route: string = '/heroes/add';
+  readonly tooltipAdd: string = 'Añadir Heroe';
+  readonly filterKey: string = 'heroes.search';
 
-  view: View = {
+  readonly view: View = {
     key: 'heroes.view',
     mode: '',
   };
 
-  fields: Fields[] = [
+  readonly fields: Fields[] = [
     { name: 'superhero', label: 'Heroe', flex: 2, titlecase: true },
     { name: 'alter_ego', label: 'Personaje', flex: 2 },
     { name: 'publisher', label: 'Editorial', flex: 2, hide: ['sm'] },
     { name: 'first_appearance', label: 'Estreno', flex: 2, hide: ['sm', 'md'] },
   ];
 
-  actions: Actions[] = [
+  readonly actions: Actions[] = [
     { name: 'edit', label: 'Editar' },
     { name: 'delete', label: 'Eliminar' },
   ];
 
-  dataSource: WritableSignal<Hero[]> = signal([]);
-
-  private _unsubscribe$ = new Subject<void>();
-
-  constructor(
-    private _heroesService: HeroesService,
-    private _route: Router,
-    private _dialog: MatDialog,
-    private _notifierService: NotifierService,
-  ) {}
+  readonly dataSource: WritableSignal<Hero[]> = signal([]);
 
   ngOnInit(): void {
     const filterText = localStorage.getItem(this.filterKey) || '';

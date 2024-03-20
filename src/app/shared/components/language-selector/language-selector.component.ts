@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,8 +12,8 @@ import { LanguageService } from 'src/app/core/services/language.service';
   templateUrl: './language-selector.component.html',
   styleUrl: './language-selector.component.css',
 })
-export class LanguageSelectorComponent {
-  private readonly _translateService = inject(LanguageService);
+export class LanguageSelectorComponent implements OnInit {
+  private readonly _translateService: LanguageService = inject(LanguageService);
 
   languageList: string[] = [];
 

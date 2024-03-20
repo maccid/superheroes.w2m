@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 
@@ -13,11 +13,13 @@ import { LoadingService } from '../../../core/services/loading.service';
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss'],
 })
-export class LoaderComponent {
+export class LoaderComponent implements OnInit {
   spinnerActive: boolean = true;
 
-  constructor(public loadingService: LoadingService) {
-    this.loadingService.showSpinner.subscribe((state: boolean): void => {
+  private readonly _loadingService: LoadingService = inject(LoadingService);
+
+  ngOnInit(): void {
+    this._loadingService.showSpinner.subscribe((state: boolean): void => {
       this.spinnerActive = state;
     });
   }

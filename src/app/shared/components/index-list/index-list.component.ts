@@ -31,8 +31,6 @@ export class IndexListComponent implements OnInit, OnDestroy {
 
   private _subscription: Subscription = new Subscription();
 
-  constructor() {}
-
   ngOnInit(): void {
     this._subscription = fromEvent(window, 'resize').subscribe(() => {
       this._handleColumns();

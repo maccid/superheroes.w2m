@@ -12,6 +12,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrls: ['./add-button.component.scss'],
 })
 export class AddButtonComponent {
-  @Input() routerLink: string = '';
-  @Input() tooltipText: string = '';
+  @Input({ required: true }) routerLink: string = '';
+  @Input({ required: true }) tooltipText: string = '';
 }
