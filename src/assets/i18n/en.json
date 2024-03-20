@@ -71,6 +71,43 @@
       "required": "Field required.",
       "min": "The field must have at least '{{min}}' characters.",
       "size": "The field must have between '{{min}}' and '{{max}}' characters."
+    },
+    "home": {
+      "creator": "Created by<br/>{{name}}",
+      "title": "Documentation",
+      "subtitle": "Below is the documentation of the project carried out for the World2Meet technical test.",
+      "functionality": {
+        "title": "Functionality",
+        "text": "<p>The app focuses on the consumption of the SuperHeroes API created using Json Server.</p><ul><li><b>Home page: </b> <br />It has been used to document the app.</li><br/><li><b>Heroes List Page: </b> <br />The superheroes are shown in responsive table or card mode depending on the viewing mode chosen. <br />You can perform different actions on the list, such as editing or deleting a hero, in addition to being able to add a new hero. <br />In addition, a filter for superheroes has been added that is configured so that, even if the page is changed or refreshed, the information is maintained. <br />The filter events have been managed in such a way that if a new request is made, the previous one is canceled so that there is no overload of requests to the server.</li><br/><li><b> Add/edit Heroes page: </b> <br />A form is displayed to edit or add a new hero. <br />If edited, the id is preserved, which is linked to an image, if a new hero is created, the id must be entered.<br/>The hero's name is always created in upper case.</li ></ul>"
+      },
+      "envvar": {
+        "title": "Environment Variables and Relative Paths",
+        "text": "<p>The <b>environment variables</b> are defined in /env to separate the specific configuration of the different environments, in this case there is only development.</p><p>The <b>relative paths </b> defined in tsconfig are to give more consistency to the project and more easily understand the location of the folders without having to navigate between them. Also, in case you have to reorganize the project, you will not have to change the path of all the files it affects, but only in the tsconfig file.</p>"
+      },
+      "structure": {
+        "title": "Structure",
+        "text": "<p>The project has been designed for future scalability, that is, it is modularized so that in the future new pages, components, services, etc. can be created. To achieve this, it has been structured as follows:<br/><br/></p><ul><li><b>Core:</b> The Core is responsible for maintaining global services. It contains common functions of the project, such as interceptors, services, pipe, etc. </li><br/><li><b>Shared:</b> The list of components common to the application is shown. Some of these components are part of the structure or skeleton, such as header and loader. These components have the functionality of modifying the structure of the app, making the view change according to need. Others are components that are reused in the different pages that make up the app, such as filter and toolbar. These mostly state the information on the current page and update its components to adapt to it.</li><br/><li><b>Features:</b> It is designed to modulate the application, that is, For each new module, a folder is created that will contain all the functionality. Here are the module's own services, interfaces, components, models and the different pages used, such as in this case a list of heroes and adding/editing heroes. If you want to create a new module, you will only have to follow the structure and adapt the new functionality, for example if we want to manage the publishers.</li></ul>"
+      },
+      "services": {
+        "title": "Services",
+        "text": "<p>Different services have been generated so that the different components can perform actions on the service. The most important ones are:</p><ul><li><b>Api:</b> Connects the components with the API, in this case for the Heroes module, to be able to perform CRUD operations on it.</li><br/><li><b>Loader:</b> When obtaining the data, a loader must be displayed informing the user that the data is being loaded.</li><br/><li><b>Notifier:</b> When creating / modifying / deleting an element or in case of error, show an informative message to the user. </li><br/></ul>"
+      },
+      "languages": {
+        "title": "Languages",
+        "text": "<p>The application has been translated so that it works in two languages: <b>Spanish</b> and <b>English</b>.</p>"
+      },
+      "test": {
+        "title": "Testing",
+        "text": "<p><b>73</b> tests have been generated for the different components, services, interceptors. Each of the tests is designed to effectively control the flow of control and/or functionalities.</p>"
+      },
+      "eslint": {
+        "title": "Code quality",
+        "text": "<p>ESLint has been used to help detect that certain standards and criteria are met so that the written code follows quality standards and styles, favoring the writing of correct, coherent and consistent code.</p><p> Prettier has been used to format the code and give greater quality.</p>"
+      },
+      "todo": {
+        "title": "Improvements",
+        "text": "<p>The Redux pattern could be used for state management of the data and information used in the application. With them we would have managed to centralize the states and make them atomic. In this way, any component that is monitoring certain information in the store is able to see when it changes and act on it.</p>"
+      }
     }
   }
 }

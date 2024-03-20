@@ -1,6 +1,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { HomeComponent } from 'src/app/features/home/home.component';
 
@@ -12,7 +13,12 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatExpansionModule, NoopAnimationsModule, HomeComponent],
+      imports: [
+        MatExpansionModule,
+        NoopAnimationsModule,
+        HomeComponent,
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents();
   });
 
@@ -33,9 +39,9 @@ describe('HomeComponent', () => {
     expect(sections.length).toEqual(2);
   });
 
-  it('Debe contener 5 acordeones', () => {
+  it('Debe contener 8 acordeones', () => {
     expect(
       compiled.querySelectorAll('mat-accordion mat-expansion-panel').length,
-    ).toBe(5);
+    ).toBe(8);
   });
 });
