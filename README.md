@@ -4,9 +4,11 @@ Prueba Técnica para World2Meet
 
 ## Conexión API
 
-Para que el proyecto funcione con normalidad es necesario levantar el docker que contiene el servidor para la API. Para ello es necesario tener docker en su Sistema Operativo y lanzar el siguiente comando dentro del proyecto `npm run api`, el cual crea el contenedor con la base de datos ubicado en la carpeta .docker
+Para que el proyecto funcione con normalidad se puede simular el servicio REST API de dos maneras:
 
-Nota: El puerto de la API es el 8081 el cual debe estar libre para el correcto funcionamiento de la API.
+- Mediante JSON server, para ello se debe lanzar el siguiente comando dentro del proyecto `npm run api`. Esta opción afectará directamente al fichero _db.json_ localizado en la carpeta .docker/json-server.
+
+- Mediante docker, es necesario tener docker y docker-compose en su Sistema Operativo y lanzar el siguiente comando dentro del proyecto `npm run docker`, el cual crea un contenedor que simula una REST API. Está opción no afecta al fichero _db.json_ debido a que una _copia_ de la base de datos, reseteando los datos cada vez que se levante el docker.
 
 ## Latencia de la red
 
