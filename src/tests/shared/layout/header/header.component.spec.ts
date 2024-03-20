@@ -17,7 +17,7 @@ import { HeaderComponent } from 'src/app/shared/layout/header/header.component';
 import { HomeComponent } from 'src/app/features/home/home.component';
 import { IndexComponent } from 'src/app/features/heroes/pages/index/index.component';
 import { Router } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -29,6 +29,7 @@ describe('HeaderComponent', () => {
   let heroesButton: DebugElement;
 
   let router: Router;
+  let translateService: TranslateService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -50,6 +51,7 @@ describe('HeaderComponent', () => {
     component = fixture.componentInstance;
     compiled = fixture.debugElement.nativeElement;
     router = TestBed.inject(Router);
+    translateService = TestBed.inject(TranslateService);
 
     fixture.detectChanges();
   });
@@ -93,6 +95,22 @@ describe('HeaderComponent', () => {
       .withContext('Boton enlace heroe activo')
       .toBeTruthy();
   }));
+/*
+  it('Debe mostrar "Home" cuando seleccionas idioma Inglés', fakeAsync(() => {
+    translateService.use('en');
+    fixture.detectChanges();
+    tick();
+    console.log('111111111111111', homeButton.nativeElement.textContent.trim())
+    expect(homeButton.nativeElement.textContent.trim()).toBe('Home');
+  }));
 
+  it('Debe mostrar "Inicio" cuando seleccionas idioma Español', fakeAsync(() => {
+    translateService.use('es');
+    fixture.detectChanges();
+    tick();
+
+    expect(homeButton.nativeElement.textContent.trim()).toBe('Inicio');
+  }));
+*/
   //ToDo: Pruebas idiomas y app-selector-language
 });
