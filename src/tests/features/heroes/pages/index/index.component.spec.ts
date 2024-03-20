@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { IndexComponent } from 'src/app/features/heroes/pages/index/index.component';
 import { HeroesService } from 'src/app/features/heroes/services/heroes.services';
 import { NotifierService } from 'src/app/core/services/notifier.service';
@@ -24,6 +26,7 @@ describe('IndexComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         NoopAnimationsModule,
+        TranslateModule.forRoot(),
         IndexComponent,
       ],
       providers: [

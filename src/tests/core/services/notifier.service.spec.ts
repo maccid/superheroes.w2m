@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { NotifierService } from 'src/app/core/services/notifier.service';
@@ -12,6 +14,9 @@ describe('NotifierService', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        TranslateModule.forRoot(),
+      ],
       providers: [NotifierService],
     });
 
@@ -28,7 +33,7 @@ describe('NotifierService', () => {
     const errorMessage = 'Error message';
     service.openError(errorMessage);
 
-    expect(openSpyStub).toHaveBeenCalledOnceWith(errorMessage, 'Cerrar', {
+    expect(openSpyStub).toHaveBeenCalledOnceWith(errorMessage, 'notify.close', {
       duration: 2000,
       panelClass: ['error-snackbar'],
     });
@@ -38,7 +43,7 @@ describe('NotifierService', () => {
     const successMessage = 'Success message';
     service.openSuccess(successMessage);
 
-    expect(openSpyStub).toHaveBeenCalledOnceWith(successMessage, 'Cerrar', {
+    expect(openSpyStub).toHaveBeenCalledOnceWith(successMessage, 'notify.close', {
       duration: 2000,
       panelClass: ['success-snackbar'],
     });

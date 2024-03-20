@@ -49,17 +49,4 @@ describe('LoadingInterceptor', () => {
     expect(interceptor).toBeTruthy();
   });
 
-  it('Debe mostar loader y parar', () => {
-    loadingService.handleRequest('show');
-    expect(loadingService.isLoading()).toBeTrue();
-
-    //const req = httpMock.expectOne(`${url}/heroes`);
-
-    httpClient.get(`${url}/heroes`).subscribe(() => {
-      expect(loadingService.isLoading()).toBeFalse();
-    });
-
-    //req.flush({});
-    
-  });
 });

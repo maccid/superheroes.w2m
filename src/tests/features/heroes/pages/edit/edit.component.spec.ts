@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { EditComponent } from 'src/app/features/heroes/pages/edit/edit.component';
 import { HeroesService } from 'src/app/features/heroes/services/heroes.services';
 import { NotifierService } from 'src/app/core/services/notifier.service';
@@ -25,6 +27,7 @@ describe('EditComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         NoopAnimationsModule,
+        TranslateModule.forRoot(),
         EditComponent,
       ],
       providers: [
