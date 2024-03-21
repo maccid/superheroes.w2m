@@ -11,6 +11,7 @@ import {
   Hero,
   Publisher,
 } from 'src/app/features/heroes/models/heroes.interface';
+import { HttpParams, HttpResponse } from '@angular/common/http';
 
 describe('HeroesService', () => {
   let service: HeroesService;

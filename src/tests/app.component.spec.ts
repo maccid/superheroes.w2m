@@ -30,7 +30,7 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     compiled = fixture.debugElement.nativeElement;
-    
+
     fixture.detectChanges();
   });
 
@@ -57,5 +57,4 @@ describe('AppComponent', () => {
     const routerOutlet = compiled.querySelector('router-outlet');
     expect(routerOutlet).toBeTruthy();
   });
-  //ToDo: Pruebas lenguaje
 });

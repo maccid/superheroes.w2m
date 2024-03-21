@@ -43,8 +43,7 @@ describe('FilterSearchComponent', () => {
     expect(component.search.emit).toHaveBeenCalledWith(filterValue);
   });
 
-  //ToDo: Revisar por que sale WARNING
-  it('debe borrar texto y emitir evento con texto vacio cuando pulsa botón borrar', (done) => {
+  it('Debe borrar texto y emitir evento con texto vacio cuando pulsa botón borrar', () => {
     spyOn(component.search, 'emit');
 
     const button = fixture.debugElement.nativeElement.querySelector('button');
@@ -55,11 +54,7 @@ describe('FilterSearchComponent', () => {
       expect(component.filterValue).toEqual('');
       expect(component.search.emit).toHaveBeenCalledWith('');
     }
-    done();
+
+    expect().nothing();
   });
 });
-/*
-function done() {
-  
-}*/
-

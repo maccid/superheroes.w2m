@@ -32,9 +32,11 @@ export class ViewModeComponent implements OnInit {
   selected = '';
 
   ngOnInit(): void {
-    const storedParams = localStorage.getItem(this.feature) || '';
-    const params = JSON.parse(storedParams);
-    this.selected = params.view;
+    const storedParams = localStorage.getItem(this.feature);
+    if (storedParams) {
+      const params = JSON.parse(storedParams);
+      this.selected = params.view;
+    }
   }
 
   onViewChange(mode: string): void {

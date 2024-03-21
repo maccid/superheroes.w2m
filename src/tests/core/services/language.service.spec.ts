@@ -28,8 +28,6 @@ describe('LanguageService', () => {
     ) as jasmine.SpyObj<TranslateService>;
   });
 
-  //ToDo: Pruebas +
-
   it('Debe crear el servicio', () => {
     expect(service).toBeTruthy();
   });
@@ -59,7 +57,7 @@ describe('LanguageService', () => {
 
   it('Debe cambiar idioma', () => {
     service.changeLang('en');
-    
+
     expect(translateServiceSpy.use).toHaveBeenCalledWith('en');
     expect(localStorage.getItem('i18n.lang')).toBe('en');
   });

@@ -1,8 +1,12 @@
 <div mat-dialog-content>
-  <p>{{ 'dialog.delete.text' | translate:{ id } }}</p>
+  <p>{{ "dialog.delete.text" | translate: { id } }}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="false">{{ 'dialog.actions.cancel' | translate}}</button>
+  <button mat-button [mat-dialog-close]="false">
+    {{ "dialog.actions.cancel" | translate }}
+  </button>
   <span class="spacer"></span>
-  <button mat-button color="warn" [mat-dialog-close]="true">{{ 'dialog.actions.delete' | translate}}</button>
+  <button mat-button color="warn" [mat-dialog-close]="true">
+    {{ "dialog.actions.delete" | translate }}
+  </button>
 </div>

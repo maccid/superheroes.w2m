@@ -8,7 +8,9 @@
           <mat-error>{{ "features.errors.required" | translate }}</mat-error>
         } @else if (getField["id"].hasError("minlength")) {
           <mat-error>{{
-            "features.errors.min" | translate: { min: getField["id"].getError('minlength').requiredLength}
+            "features.errors.min"
+              | translate
+                : { min: getField["id"].getError("minlength").requiredLength }
           }}</mat-error>
         }
       </mat-form-field>
@@ -20,7 +22,12 @@
           <mat-error>{{ "features.errors.required" | translate }}</mat-error>
         } @else if (getField["superhero"].hasError("minlength")) {
           <mat-error>{{
-            "features.errors.min" | translate: { min: getField["superhero"].getError('minlength').requiredLength}
+            "features.errors.min"
+              | translate
+                : {
+                    min: getField["superhero"].getError("minlength")
+                      .requiredLength
+                  }
           }}</mat-error>
         }
       </mat-form-field>
@@ -34,7 +41,12 @@
           <mat-error>{{ "features.errors.required" | translate }}</mat-error>
         } @else if (getField["alter_ego"].hasError("minlength")) {
           <mat-error>{{
-            "features.errors.min" | translate:{ min: getField["alter_ego"].getError('minlength').requiredLength}
+            "features.errors.min"
+              | translate
+                : {
+                    min: getField["alter_ego"].getError("minlength")
+                      .requiredLength
+                  }
           }}</mat-error>
         }
       </mat-form-field>

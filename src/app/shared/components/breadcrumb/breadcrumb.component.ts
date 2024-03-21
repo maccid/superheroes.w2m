@@ -56,7 +56,8 @@ export class BreadcrumbComponent implements OnInit {
       const label = child.snapshot.data['breadcrumb'] ?? '';
       const id = child.snapshot.paramMap.get('id');
 
-      if (id != null && id != '' && label !== '') breadcrumbs.push({ label, url, id });
+      if (id != null && id != '' && label !== '')
+        breadcrumbs.push({ label, url, id });
       else if (label !== '') breadcrumbs.push({ label, url });
 
       return this.buildBreadcrumbs(child, url, breadcrumbs);

@@ -5,8 +5,3 @@ export interface Fields {
   titlecase?: boolean;
   hide?: string[];
 }
-
-
-
-
-

@@ -1,7 +1,6 @@
 import { MatPaginatorIntl } from '@angular/material/paginator';
 
 const getRangeLabel = (page: number, pageSize: number, length: number) => {
- 
   const amountPages = Math.ceil(length / pageSize);
   return `${page + 1} / ${amountPages}`;
 };

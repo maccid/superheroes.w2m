@@ -70,12 +70,11 @@ mat-card {
       white-space: nowrap;
       overflow: hidden;
       width: 302px;
-    
     }
   }
 
   mat-card-actions {
-    justify-content: flex-end
+    justify-content: flex-end;
   }
 
   &.filter-empty {
