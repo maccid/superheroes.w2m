@@ -98,7 +98,7 @@
       },
       "test": {
         "title": "Testing",
-        "text": "<p><b>73</b> tests have been generated for the different components, services, interceptors. Each of the tests is designed to effectively control the flow of control and/or functionalities.</p>"
+        "text": "<p><b>79</b> tests have been generated for the different components, services, interceptors. Each of the tests is designed to effectively control the flow of control and/or functionalities.</p>"
       },
       "eslint": {
         "title": "Code quality",

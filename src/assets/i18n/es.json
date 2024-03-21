@@ -98,7 +98,7 @@
       },
       "test": {
         "title": "Pruebas",
-        "text": "<p>Se ha generado <b>73</b> pruebas para los distintos componentes, servicios, interceptores. Cada una de las pruebas esta diseñada para controlar de manera efectiva el flujo de control y/o funcionalidades.</p>"
+        "text": "<p>Se ha generado <b>79</b> pruebas para los distintos componentes, servicios, interceptores. Cada una de las pruebas esta diseñada para controlar de manera efectiva el flujo de control y/o funcionalidades.</p>"
       },
       "eslint": {
         "title": "Calidad del código",
