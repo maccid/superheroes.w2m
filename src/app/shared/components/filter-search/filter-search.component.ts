@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-filter',
@@ -22,28 +23,37 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTooltipModule,
     TranslateModule,
   ],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        subscriptSizing: 'dynamic',
+      },
+    },
+  ],
   templateUrl: './filter-search.component.html',
   styleUrls: ['filter-search.component.scss'],
 })
 export class FilterSearchComponent implements OnInit {
-  @Input({ required: true }) filterKey: string = '';
-  @Output() filterText = new EventEmitter<string>();
+  @Input({ required: true }) feature: string = '';
+  @Input({ required: true }) field: string = '';
+  @Output() search = new EventEmitter<string>();
 
   filterValue: string = '';
 
   ngOnInit(): void {
-    this.filterValue = localStorage.getItem(this.filterKey) || '';
+    const storedParams = localStorage.getItem(this.feature) || '';
+    const params = JSON.parse(storedParams);
+    this.filterValue = params.filters[this.field];
   }
 
   onSearchTextChange(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.filterText.emit(filterValue);
-    localStorage.setItem(this.filterKey, filterValue);
+    this.search.emit(filterValue);
   }
 
   clearText(): void {
     this.filterValue = '';
-    this.filterText.emit('');
-    localStorage.setItem(this.filterKey, '');
+    this.search.emit('');
   }
 }

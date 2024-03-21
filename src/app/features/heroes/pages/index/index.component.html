@@ -1,14 +1,28 @@
-<app-add-button [routerLink]="routeAdd" [tooltipText]="tooltipAdd" />
+<app-add-button [feature]="feature" />
 
 <div class="options">
   <app-filter
-    [filterKey]="filterKey"
-    (filterText)="applyFilter($event)"
+    [feature]="feature"
+    [field]="'superhero_like'"
+    (search)="applyFilter($event)"
   ></app-filter>
-  <app-view-mode [options]="view" (mode)="applyView($event)"></app-view-mode>
+  <app-view-mode [feature]="feature" (mode)="applyView($event)"></app-view-mode>
 </div>
 
-@switch (view.mode) {
+<mat-card>
+  <mat-card-content class="no-padding">
+    <mat-paginator
+      [length]="params.count"
+      [pageIndex]="params.filters._page - 1"
+      [pageSize]="params.filters._limit"
+      hidePageSize="true"
+      showFirstLastButtons
+      (page)="applyPage($event.pageIndex)"
+    ></mat-paginator>
+  </mat-card-content>
+</mat-card>
+
+@switch (params.view) {
   @case ("table") {
     <mat-card>
       <mat-card-content class="no-padding">
@@ -26,7 +40,7 @@
     <app-index-grid
       [fields]="fields"
       [actions]="actions"
-      [imageRoute]="imageRoute"
+      [imageRoute]="feature"
       [dataSource]="dataSource()"
       (actionEvent)="actionEvent($event)"
     ></app-index-grid>

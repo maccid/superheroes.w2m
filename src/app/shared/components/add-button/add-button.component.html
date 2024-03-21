@@ -1,9 +1,9 @@
 <button
   mat-fab
   class="add"
-  [routerLink]="routerLink"
+  [routerLink]="'/' + feature + '/add'"
   color="primary"
-  [matTooltip]="tooltipText | translate"
+  [matTooltip]="'features.' + feature + '.add' | translate"
 >
   +
 </button>

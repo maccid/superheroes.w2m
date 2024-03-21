@@ -3,7 +3,7 @@
     mat-icon-button
     [matTooltip]="'view.grid' | translate"
     (click)="onViewChange('grid')"
-    [disabled]="options.mode !== 'table'"
+    [disabled]="selected !== 'table'"
   >
     <mat-icon>dashboard</mat-icon>
   </button>
@@ -11,7 +11,7 @@
     mat-icon-button
     [matTooltip]="'view.table' | translate"
     (click)="onViewChange('table')"
-    [disabled]="options.mode !== 'grid'"
+    [disabled]="selected !== 'grid'"
   >
     <mat-icon>view_list</mat-icon>
   </button>

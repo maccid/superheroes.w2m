@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -16,8 +16,11 @@ export class HeroesService {
     this.url = environment.apiUrl;
   }
 
-  list(params: string = ''): Observable<Hero[]> {
-    return this._http.get<Hero[]>(`${this.url}/heroes${params}`);
+  list(params: HttpParams): Observable<HttpResponse<Hero[]>> {
+    return this._http.get<Hero[]>(`${this.url}/heroes`, {
+      observe: 'response',
+      params,
+    });
   }
 
   get(id: string): Observable<Hero> {

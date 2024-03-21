@@ -23,7 +23,11 @@
                   <p>
                     <b>{{ field.label | translate }}: </b>
                     <span>
-                      {{ element[field.name] }}
+                      @if (element[field.name]) {
+                        {{ element[field.name] }}
+                      } @else {
+                        -
+                      }
                     </span>
                   </p>
                 </mat-card-content>

@@ -2,18 +2,22 @@
   @for (field of fields; track field) {
     <ng-container [matColumnDef]="field.name">
       <mat-header-cell *matHeaderCellDef [style.flex]="field.flex">
-        <b>{{ field.label | translate}}</b>
+        <b>{{ field.label | translate }}</b>
       </mat-header-cell>
       <mat-cell
         *matCellDef="let element"
         [attr.data-label]="field.label"
         [style.flex]="field.flex"
       >
-        {{
-          field.titlecase
-            ? (element[field.name] | titlecase)
-            : element[field.name]
-        }}
+        @if (element[field.name]) {
+          {{
+            field.titlecase
+              ? (element[field.name] | titlecase)
+              : element[field.name]
+          }}
+        } @else {
+          -
+        }
       </mat-cell>
     </ng-container>
   }

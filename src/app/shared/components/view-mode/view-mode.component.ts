@@ -10,8 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { View } from 'src/app/core/interfaces/view.interface';
-
 @Component({
   selector: 'app-view-mode',
   standalone: true,
@@ -28,16 +26,19 @@ import { View } from 'src/app/core/interfaces/view.interface';
   styleUrls: ['view-mode.component.scss'],
 })
 export class ViewModeComponent implements OnInit {
-  @Input({ required: true }) options: View = {} as View;
+  @Input({ required: true }) feature: string = '';
   @Output() mode = new EventEmitter<string>();
 
+  selected = '';
+
   ngOnInit(): void {
-    this.options.mode = localStorage.getItem(this.options.key) || 'table';
+    const storedParams = localStorage.getItem(this.feature) || '';
+    const params = JSON.parse(storedParams);
+    this.selected = params.view;
   }
 
   onViewChange(mode: string): void {
-    this.options.mode = mode;
+    this.selected = mode;
     this.mode.emit(mode);
-    localStorage.setItem(this.options.key, mode);
   }
 }

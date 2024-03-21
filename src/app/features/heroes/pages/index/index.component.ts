@@ -4,6 +4,8 @@ import {
   WritableSignal,
   signal,
   inject,
+  OnDestroy,
+  HostListener,
 } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -12,11 +14,15 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import {
+  MatPaginatorIntl,
+  MatPaginatorModule,
+} from '@angular/material/paginator';
 
 import { Subject, takeUntil } from 'rxjs';
 
 import { NotifierService } from 'src/app/core/services/notifier.service';
-import { View } from 'src/app/core/interfaces/view.interface';
+import { Params } from 'src/app/core/interfaces/params.interface';
 import { Fields } from 'src/app/core/interfaces/fields.interface';
 import { Actions } from 'src/app/core/interfaces/actions.interface';
 
@@ -29,21 +35,25 @@ import { IndexListComponent } from 'src/app/shared/components/index-list/index-l
 
 import { HeroesService } from '../../services/heroes.services';
 import { Hero } from '../../models/heroes.interface';
+import { getPaginatorIntl } from 'src/app/core/utils/paginator-intl';
+import { HttpParams, HttpResponse } from '@angular/common/http';
 
 @Component({
   standalone: true,
   imports: [
     MatCardModule,
+    MatPaginatorModule,
     FilterSearchComponent,
     AddButtonComponent,
     ViewModeComponent,
     IndexListComponent,
     IndexGridComponent,
   ],
+  providers: [{ provide: MatPaginatorIntl, useValue: getPaginatorIntl() }],
   templateUrl: './index.component.html',
   styleUrls: ['index.component.scss'],
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, OnDestroy {
   private readonly _dialog: MatDialog = inject(MatDialog);
   private readonly _route: Router = inject(Router);
   private readonly _heroesService: HeroesService = inject(HeroesService);
@@ -52,15 +62,8 @@ export class IndexComponent implements OnInit {
 
   private _unsubscribe$ = new Subject<void>();
 
-  readonly imageRoute: string = 'heroes';
-  readonly routeAdd: string = '/heroes/add';
-  readonly tooltipAdd: string = 'features.heroes.add';
-  readonly filterKey: string = 'heroes.search';
-
-  readonly view: View = {
-    key: 'heroes.view',
-    mode: '',
-  };
+  readonly feature: string = 'heroes';
+  readonly dataSource: WritableSignal<Hero[]> = signal([]);
 
   readonly fields: Fields[] = [
     {
@@ -89,14 +92,23 @@ export class IndexComponent implements OnInit {
     { name: 'delete', label: 'features.actions.delete' },
   ];
 
-  readonly dataSource: WritableSignal<Hero[]> = signal([]);
+  params: Params = {
+    filters: {
+      _limit: 15,
+      _page: 1,
+      superhero_like: '',
+    },
+    view: 'table',
+    count: '0',
+  };
 
   ngOnInit(): void {
-    const filterText = localStorage.getItem(this.filterKey) || '';
-    const viewValue = localStorage.getItem(this.view.key) || '';
+    const storedParams = localStorage.getItem(this.feature);
 
-    this.applyFilter(filterText);
-    this.applyView(viewValue);
+    if (storedParams) this.params = JSON.parse(storedParams);
+    else localStorage.setItem(this.feature, JSON.stringify(this.params));
+
+    this.getList();
   }
 
   actionEvent(event: { action: string; id: string }) {
@@ -110,23 +122,38 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  applyFilter(filterText: string = '') {
+  getList() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
     this._unsubscribe$ = new Subject<void>();
 
-    const params = filterText ? `?superhero_like=${filterText}` : ``;
+    const params = new HttpParams({ fromObject: { ...this.params.filters } });
 
     this._heroesService
       .list(params)
       .pipe(takeUntil(this._unsubscribe$))
-      .subscribe((heroes: Hero[]) => {
+      .subscribe((response: HttpResponse<Hero[]>) => {
+        const heroes = response.body || [];
+        this.params.count = response.headers.get('X-Total-Count') || '0';
         this.dataSource.set(heroes);
       });
   }
 
-  applyView(viewValue: string = '') {
-    this.view.mode = viewValue;
+  applyFilter(textFilter: string = '') {
+    this.params.filters['superhero_like'] = textFilter;
+    this.params.filters._page = 1;
+
+    this.getList();
+  }
+
+  applyPage(index: number) {
+    this.params.filters._page = index + 1;
+
+    this.getList();
+  }
+
+  applyView(mode: string = ''): void {
+    this.params.view = mode;
   }
 
   openDeleteDialog(id: string): void {
@@ -142,9 +169,19 @@ export class IndexComponent implements OnInit {
 
           this._notifierService.openSuccess(message);
 
-          this.ngOnInit();
+          this.getList();
         });
       }
     });
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  beforeunloadHandler() {
+    localStorage.setItem(this.feature, JSON.stringify(this.params));
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe$.next();
+    this._unsubscribe$.complete();
   }
 }
