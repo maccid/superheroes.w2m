@@ -1,5 +1,10 @@
 import { DebugElement } from '@angular/core';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import {
+  TestBed,
+  ComponentFixture,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
 
@@ -38,20 +43,22 @@ describe('AddButtonComponent', () => {
   });
 
   it('Debe tener enlace correcto', () => {
-    const routerLink = '/heroes/add';
+    const feature = 'heroes';
 
-    component.routerLink = routerLink;
+    component.feature = feature;
     fixture.detectChanges();
 
     expect(button.nativeElement.getAttribute('ng-reflect-router-link')).toBe(
-      routerLink,
+      '/' + feature + '/add',
     );
   });
 
   it('Debe tener texto de información correcto', () => {
-    const tooltipText = 'Añadir heroe';
+    const feature = 'heroes';
+    const tooltipText = 'features.heroes.add';
 
-    component.tooltipText = tooltipText;
+    component.feature = feature;
+
     fixture.detectChanges();
 
     expect(button.nativeElement.getAttribute('ng-reflect-message')).toBe(

@@ -42,9 +42,11 @@ export class FilterSearchComponent implements OnInit {
   filterValue: string = '';
 
   ngOnInit(): void {
-    const storedParams = localStorage.getItem(this.feature) || '';
-    const params = JSON.parse(storedParams);
-    this.filterValue = params.filters[this.field];
+    const storedParams = localStorage.getItem(this.feature);
+    if (storedParams) {
+      const params = JSON.parse(storedParams);
+      this.filterValue = params.filters[this.field];
+    }
   }
 
   onSearchTextChange(event: Event): void {

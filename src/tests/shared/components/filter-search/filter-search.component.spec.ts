@@ -31,20 +31,21 @@ describe('FilterSearchComponent', () => {
   });
 
   it('Debe emitir evento cuando cambia el texto', () => {
-    spyOn(component.filterText, 'emit');
+    spyOn(component.search, 'emit');
 
-    const searchText: string = 'test';
+    const filterValue: string = 'Batman';
     const input = fixture.debugElement.nativeElement.querySelector('input');
 
-    input.value = searchText;
+    input.value = filterValue;
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(component.filterText.emit).toHaveBeenCalledWith(searchText);
+    expect(component.search.emit).toHaveBeenCalledWith(filterValue);
   });
 
-  it('Debe borrar texto y emitir evento con texto vacio cuando pulsa botón borrar', () => {
-    spyOn(component.filterText, 'emit');
+  //ToDo: Revisar por que sale WARNING
+  it('debe borrar texto y emitir evento con texto vacio cuando pulsa botón borrar', (done) => {
+    spyOn(component.search, 'emit');
 
     const button = fixture.debugElement.nativeElement.querySelector('button');
     if (button) {
@@ -52,7 +53,13 @@ describe('FilterSearchComponent', () => {
       fixture.detectChanges();
 
       expect(component.filterValue).toEqual('');
-      expect(component.filterText.emit).toHaveBeenCalledWith('');
+      expect(component.search.emit).toHaveBeenCalledWith('');
     }
+    done();
   });
 });
+/*
+function done() {
+  
+}*/
+
